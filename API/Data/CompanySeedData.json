@@ -1,0 +1,62 @@
+[
+    {
+        "Name": "Gas Confection",
+        "TaxNumber": "1234567890",
+        "FgazNumber": "FGAZ-P/00/1234/16",
+        "StreetNumber": "Łaska 211",
+        "City": "Zduńska Wola",
+        "PostCode": "98-220",
+        "Users": [
+            {
+				"UserName": "Jan", 
+				"Name": "Jan",
+				"Surname": "Kowalski"
+            }
+        ]
+    },
+	{
+        "Name": "Entalpia",
+        "TaxNumber": "1111111111",
+        "FgazNumber": "FGAZ-P/11/1234/16",
+        "StreetNumber": "Łódzka 21",
+        "City": "Sieradz",
+        "PostCode": "98-200",
+        "Users": [
+            {
+				"UserName": "Karol", 
+				"Name": "Karol",
+				"Surname": "Nowak"
+            }
+        ]
+    },
+	{
+        "Name": "PlanetInfo",
+        "TaxNumber": "2222222222",
+        "FgazNumber": "FGAZ-P/22/1234/16",
+        "StreetNumber": "Wydawnicza",
+        "City": "Łask",
+        "PostCode": "98-100",
+        "Users": [
+            {
+				"UserName": "Piotr", 
+				"Name": "Piotr",
+				"Surname": "Kowalczyk"
+            }
+        ]
+    },
+	{
+        "Name": "Polmlek",
+        "TaxNumber": "3333333333",
+        "FgazNumber": "FGAZ-P/33/1234/16",
+        "StreetNumber": "Zielona 2A",
+        "City": "Zduńska Wola",
+        "PostCode": "98-220",
+        "Users": [
+            {
+				"UserName": "Krystian", 
+				"Name": "Krystian",
+				"Surname": "Wesoły"
+            }
+        ]
+    }
+]
