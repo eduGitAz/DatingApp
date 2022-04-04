@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
+using API.Entities;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,12 +20,17 @@ namespace API
         {
             var host = CreateHostBuilder(args).Build();
             using var scope = host.Services.CreateScope();
+            
             var services = scope.ServiceProvider;
             try
             {
                 var context = services.GetRequiredService<DataContext>();
+                var userManager = services.GetRequiredService<UserManager<AppUser>>();
+                var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
                 await context.Database.MigrateAsync();
-                await Seed.SeedCompanies(context);
+               // await userManager.CreateAsync(new AppUser {UserName="hubi", Name="hubi", Surname="bb"},"Pa$$w0rd111");
+                await Seed.SeedCompanies(context, userManager, roleManager);
+                
             }
             catch(Exception ex)
             {
@@ -33,10 +40,6 @@ namespace API
 
             await host.RunAsync();
         }
-
-
-
-
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>

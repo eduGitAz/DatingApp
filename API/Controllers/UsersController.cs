@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [Authorize]
+   
     public class UsersController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
@@ -23,6 +23,7 @@ namespace API.Controllers
             _userRepository = userRepository;
         }
 
+       
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
@@ -31,6 +32,7 @@ namespace API.Controllers
             return Ok(users);
         }
 
+        
         [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUser(string username)
         {

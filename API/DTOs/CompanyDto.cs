@@ -12,5 +12,7 @@ namespace API.DTOs
         public string City { get; set; }
         public string PostCode { get; set; }
         public ICollection<MemberDto> Users { get; set; }
+        public ICollection<CustomerDto> Customers { get; set; }
+        
     }
 }

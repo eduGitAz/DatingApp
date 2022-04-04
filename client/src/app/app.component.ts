@@ -3,16 +3,17 @@ import { Component } from '@angular/core';
 import { User } from './_models/user';
 import { AccountService } from './_services/account.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'The Dating app';
+  title = 'HVAC';
   users: any;
 
-  constructor(private accountService: AccountService){}
+  constructor(public accountService: AccountService,){}
 
   ngOnInit(){
   this.setCurrentUser();
@@ -20,6 +21,7 @@ export class AppComponent {
 
   setCurrentUser(){
     const user: User = JSON.parse(localStorage.getItem('user'));
+    if(user)
     this.accountService.setCurrentUser(user);
   }
 

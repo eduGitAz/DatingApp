@@ -50,6 +50,7 @@ namespace API.Data
         {
             return await _context.Companies
             .Include(u => u.Users)
+            .Include(c => c.Customers)
             .SingleOrDefaultAsync(x => x.Name == name);
         }
 

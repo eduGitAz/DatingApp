@@ -12,5 +12,6 @@ namespace API.Entities
         public string City { get; set; }
         public string PostCode { get; set; }
         public ICollection<AppUser> Users { get; set; }
+        public ICollection<AppCustomer> Customers { get; set; }
     }
 }

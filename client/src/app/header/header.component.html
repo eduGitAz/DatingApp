@@ -1,0 +1,32 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+
+    <a class="navbar-brand col-md-3 col-lg-2" href="#">HVAC</a>
+    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation" *ngIf="accountService.currentUser$ | async">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+ 
+    <div class="navbar-nav">
+        <a class="nav-link px-3" (click)="logout()" *ngIf="accountService.currentUser$ | async">Wyloguj się</a>
+    </div>
+        
+
+      <form *ngIf="(accountService.currentUser$ | async) === null" #loginForm="ngForm" class="form-inline" (ngSubmit)="login()" autocomplete="off">
+        <input 
+          name="username"
+          [(ngModel)]="model.username"
+          class="form-control m-2" 
+          type="text" 
+          placeholder="Username">
+        <input 
+          name="password"
+          [(ngModel)]="model.password"
+          class="form-control m-2" 
+          type="password" 
+          placeholder="Password">
+        <button class="btn btn-light m-2" type="submit">Login</button>
+      </form>
+    
+ 
+  
+  </header>
