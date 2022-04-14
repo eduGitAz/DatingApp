@@ -29,9 +29,11 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
             var userName = User.FindFirst(ClaimTypes.Name)?.Value;
-            var user = await _userRepository.GetMemberDtoAsync(userName);
-
-            var users = await _userRepository.GetMembersDtoAsync(user);
+            var user = await _userRepository.GetUserByUsernameAsync(userName);
+        
+            int id = user.AppCompany.Id;
+            
+            var users = await _userRepository.GetMembersDtoAsync(id);
 
             return Ok(users);
         }
