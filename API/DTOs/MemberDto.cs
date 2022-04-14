@@ -1,3 +1,5 @@
+using API.Entities;
+
 namespace API.DTOs
 {
     public class MemberDto
@@ -6,5 +8,6 @@ namespace API.DTOs
         public string Username { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public AppCompany AppCompany { get; set;}
     }
 }

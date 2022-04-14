@@ -12,6 +12,7 @@ namespace API.Helpers
             CreateMap<RegisterDto, AppUser>();
             CreateMap<AppCompany, CompanyDto>();
             CreateMap<AppCustomer, CustomerDto>();
+            CreateMap<AppDevice, DeviceDto>();
         }
     }
 }

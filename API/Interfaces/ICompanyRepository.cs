@@ -9,7 +9,7 @@ namespace API.Interfaces
     {
         void Update(AppCompany company);
          Task<bool> SaveAllAsync();
-         Task<IEnumerable<AppCompany>> GetCompanyAsync();  
+         Task<IEnumerable<AppCompany>> GetCompaniesAsync();  
          Task<AppCompany> GetCompanyByIdAsync(int id);
          Task<AppCompany> GetCompanyByNameAsync(string name);
          Task <IEnumerable<CompanyDto>> GetCompaniesDtoAsync();

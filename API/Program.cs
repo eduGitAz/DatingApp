@@ -28,7 +28,6 @@ namespace API
                 var userManager = services.GetRequiredService<UserManager<AppUser>>();
                 var roleManager = services.GetRequiredService<RoleManager<AppRole>>();
                 await context.Database.MigrateAsync();
-               // await userManager.CreateAsync(new AppUser {UserName="hubi", Name="hubi", Surname="bb"},"Pa$$w0rd111");
                 await Seed.SeedCompanies(context, userManager, roleManager);
                 
             }

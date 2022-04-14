@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
@@ -27,10 +28,14 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
-            var users = await _userRepository.GetMembersDtoAsync();
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+            var user = await _userRepository.GetMemberDtoAsync(userName);
+
+            var users = await _userRepository.GetMembersDtoAsync(user);
 
             return Ok(users);
         }
+
 
         
         [HttpGet("{username}")]

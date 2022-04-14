@@ -16,6 +16,7 @@ namespace API.Data
 
         public DbSet<AppCompany> Companies { get; set; }
         public DbSet<AppCustomer> Customers { get; set; }
+        public DbSet<AppDevice> Devices { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

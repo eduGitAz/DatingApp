@@ -10,12 +10,14 @@
             {
 				"UserName": "Jan", 
 				"Name": "Jan",
-				"Surname": "Kowalski"
+				"Surname": "Kowalski",
+                "AppCompany": 1
             },
             {
                 "UserName": "Andrzej", 
 				"Name": "Andrzej",
-				"Surname": "Cypis"
+				"Surname": "Cypis",
+                "AppCompany": 1
             }
         ],
         "Customers": [

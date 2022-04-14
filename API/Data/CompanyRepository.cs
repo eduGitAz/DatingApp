@@ -34,7 +34,7 @@ namespace API.Data
             .SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<AppCompany>> GetCompanyAsync()
+        public async Task<IEnumerable<AppCompany>> GetCompaniesAsync()
         {
             return await _context.Companies
             .Include(u => u.Users)

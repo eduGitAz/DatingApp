@@ -28,9 +28,10 @@ namespace API.Data
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<MemberDto>> GetMembersDtoAsync()
+        public async Task<IEnumerable<MemberDto>> GetMembersDtoAsync(MemberDto memberDto)
         {
                return await _context.Users
+                .Where(x => x.AppCompany == memberDto.AppCompany)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
