@@ -1,4 +1,32 @@
 
-        <h1>Dashboard</h1>
-        <p *ngFor="let member of members">{{member.username}}</p>
-
+      <h2>Pracownicy</h2>
+        <div class="container-fluid">
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Id</th>
+                            <th style="width: 15%;">Nazwa użytkownika</th>
+                            <th style="width: 15%;">Imię</th>
+                            <th style="width: 15%;">Nazwisko</th>
+                            <th style="width: 45%;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let member of members">
+                            <td>{{member.id}}</td>
+                            <td>{{member.username}}</td>
+                            <td>{{member.name}}</td>
+                            <td>{{member.surname}}</td>
+                            <td>
+                                    <button routerLink='/members/{{member.username}}'class="btn btn-outline-info">Zobacz szczegóły</button>
+                                    <button class="btn btn-outline-danger">Usuń</button>
+                            </td>
+                        </tr>
+                    </tbody>
+            
+                </table>
+            </div>
+        </div>
+        
+        

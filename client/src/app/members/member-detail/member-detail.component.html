@@ -1,1 +1,27 @@
-<p>member-detail works!</p>
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{member.name}} {{member.surname}}</h5>
+        <div>
+            <strong>Id:</strong>
+            <p>{{member.id}}</p>
+        </div>
+        <div>
+            <strong>Nazwa użytkownika:</strong>
+            <p>{{member.username}}</p>
+        </div>
+        <div>
+            <strong>Imię i nazwisko:</strong>
+            <p>{{member.name}} {{member.surname}}</p>  
+        </div>
+        </div>
+        <div class="card-footer">
+         <div class="btn-group d-flex">
+            <button routerLink='/member/edit'class="btn btn-outline-warning">Edytuj</button>
+            <button routerLink='/member/edit'class="btn btn-outline-danger">Usuń</button>
+         </div>
+        </div>
+    </div>
+    </div>
+</div>

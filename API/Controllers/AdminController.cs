@@ -1,6 +1,8 @@
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.Entities;
+using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,18 +13,27 @@ namespace API.Controllers
     public class AdminController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
-        public AdminController(UserManager<AppUser> userManager)
+        private readonly IUserRepository _userRepository;
+
+        public AdminController(UserManager<AppUser> userManager,IUserRepository userRepository)
         {
             _userManager = userManager;
+            _userRepository = userRepository;
         }
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpGet("users-with-roles")]
         public async Task<ActionResult> GetUsersWithRoles()
         {
+
+            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
+            var user = await _userRepository.GetUserByUsernameAsync(userName);
+        
+
             var users = await _userManager.Users
             .Include(r => r.UserRoles)
-            .ThenInclude (r => r.Role)
+            .ThenInclude (r => r.Role) 
+            .Where(x => x.AppCompany.Id == user.AppCompany.Id)
             .OrderBy(u => u.UserName)
             .Select (u => new 
             {

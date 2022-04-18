@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { User } from './_models/user';
 import { AccountService } from './_services/account.service';
@@ -11,7 +10,7 @@ import { AccountService } from './_services/account.service';
 })
 export class AppComponent {
   title = 'HVAC';
-  users: any;
+
 
   constructor(public accountService: AccountService,){}
 
@@ -24,6 +23,7 @@ export class AppComponent {
     if(user)
     this.accountService.setCurrentUser(user);
   }
+
 
 }
 

@@ -11,22 +11,20 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { ListsComponent } from './lists/lists.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './_modules/shared.module';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
-import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { NotloggedinComponent } from './notloggedin/notloggedin.component';
 import { HeaderComponent } from './header/header.component';
 import { LeftmenuComponent } from './leftmenu/leftmenu.component';
-import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
 import { UserManagementComponent } from './admin/user-management/user-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 
 @NgModule({
   declarations: [
@@ -36,18 +34,16 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
     RegisterComponent,
     MemberListComponent,
     MemberDetailComponent,
-    ListsComponent,
     TestErrorsComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    MemberCardComponent,
     NotloggedinComponent,
     HeaderComponent,
     LeftmenuComponent,
-    AdminPanelComponent,
     HasRoleDirective,
     UserManagementComponent,
-    RolesModalComponent
+    RolesModalComponent,
+    MemberEditComponent
   ],
   imports: [
     BrowserModule,

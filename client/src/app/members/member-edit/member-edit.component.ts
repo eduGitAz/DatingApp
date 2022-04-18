@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
 
 @Component({
-  selector: 'app-member-detail',
-  templateUrl: './member-detail.component.html',
-  styleUrls: ['./member-detail.component.css']
+  selector: 'app-member-edit',
+  templateUrl: './member-edit.component.html',
+  styleUrls: ['./member-edit.component.css']
 })
-export class MemberDetailComponent implements OnInit {
-  member: Member;
+export class MemberEditComponent implements OnInit {
+  @Input() public member: Member;
+
 
   constructor(private memberService: MembersService, private route: ActivatedRoute) { }
 

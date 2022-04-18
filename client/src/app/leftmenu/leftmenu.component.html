@@ -19,8 +19,8 @@
                 Klienci
               </a>
             </li>
-            <li *appHasRole ='["Admin"]' class="nav-item">
-              <a class="nav-link"  routerLink='/admin'>
+            <li class="nav-item">
+              <a class="nav-link"  routerLink="/members">
                 <span data-feather="user-check"></span>
                 Pracownicy
               </a>
@@ -35,6 +35,12 @@
               <a class="nav-link" href="#">
                 <span data-feather="bar-chart-2"></span>
                 Zestawienia
+              </a>
+            </li>
+            <li *appHasRole ='["Admin"]' class="nav-item">
+              <a class="nav-link" routerLink="/users-roles">
+                <span data-feather="user"></span>
+                Użytkownicy
               </a>
             </li>
             <li class="nav-item">

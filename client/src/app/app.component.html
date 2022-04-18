@@ -1,8 +1,10 @@
 <app-header></app-header>
-
-<div class="row">
+<div class="container-fluid" *ngIf="!(accountService.currentUser$ | async)">
+    <app-notloggedin></app-notloggedin>
+</div>
+<div class="row" *ngIf="accountService.currentUser$ | async">
     <div class="col-md-3 col-lg-2">
-        <app-leftmenu *ngIf="accountService.currentUser$ | async"></app-leftmenu>
+        <app-leftmenu></app-leftmenu>
     </div>
     <div class="col-md-9 col-lg-10">
         <router-outlet></router-outlet>
