@@ -45,6 +45,19 @@ namespace API.Controllers
         {
             return await _userRepository.GetMemberDtoAsync(username);
 
+        } 
+
+        [HttpPut("{username}")]
+        public async Task<ActionResult> UpdateUser(string username, MemberUpdateDto memberUpdateDto)
+        {
+    
+           var user = await _userRepository.GetUserByUsernameAsync(username);
+            _mapper.Map(memberUpdateDto, user);
+            _userRepository.Update(user);
+            
+
+            if (await _userRepository.SaveAllAsync()) return NoContent();
+            return BadRequest("Dane nie zostały zaktualizowane");
         }
     }
 }

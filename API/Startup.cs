@@ -51,15 +51,15 @@ namespace API
         {
          
             app.UseMiddleware<ExceptionMiddleware>();
-            app.UseHttpsRedirection();
             app.UseRouting();
-            app.UseCors(x => x.AllowAnyHeader().AllowAnyHeader().WithOrigins("https://localhost:4200"));
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+            app.UseHttpsRedirection();
         }
     }
 }

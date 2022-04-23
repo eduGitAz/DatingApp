@@ -1,4 +1,4 @@
-<div class="row" *ngIf="member">
+<div class="row" *ngIf="member">    
     <div class="col-4">
         <div class="card">
         <div class="card-body">
@@ -13,15 +13,16 @@
         </div>
         <div>
             <strong>Imię i nazwisko:</strong>
-            <p>{{member.name}} {{member.surname}}</p>  
+            <p>{{member.name}} {{member.surname}}</p>   
         </div>
         </div>
         <div class="card-footer">
          <div class="btn-group d-flex">
-            <button routerLink='/member/edit'class="btn btn-outline-warning">Edytuj</button>
+            <button routerLink='/member/edit'class="btn btn-outline-warning" (click)="passOjbect()">Edytuj</button>
             <button routerLink='/member/edit'class="btn btn-outline-danger">Usuń</button>
          </div>
         </div>
     </div>
     </div>
 </div>
+ 
