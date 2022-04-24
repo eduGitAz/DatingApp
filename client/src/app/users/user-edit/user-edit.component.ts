@@ -1,5 +1,4 @@
-import { ThrowStmt } from '@angular/compiler';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -7,25 +6,27 @@ import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
 
 @Component({
-  selector: 'app-member-edit',
-  templateUrl: './member-edit.component.html',
-  styleUrls: ['./member-edit.component.css']
+  selector: 'app-user-edit',
+  templateUrl: './user-edit.component.html',
+  styleUrls: ['./user-edit.component.css']
 })
-export class MemberEditComponent implements OnInit {
+export class UserEditComponent implements OnInit {
+
   @ViewChild('editForm') editForm: NgForm;
   member: Member;
 
   constructor(private memberService: MembersService, private toastr: ToastrService, private route: ActivatedRoute) { 
-    this.member = this.memberService.getData();
+    //this.member = this.memberService.getData();
    }
 
   ngOnInit(): void {
     this.loadMember();
-  }
+  } 
 
 
   loadMember(){ 
-    this.memberService.getMember(this.member.username).subscribe(member => {this.member = member})
+    this.memberService.getMember(this.route.snapshot.paramMap.get('username')).
+    subscribe(member => { this.member = member})
   }
 
   updateMember(){
@@ -37,4 +38,3 @@ export class MemberEditComponent implements OnInit {
   }
 
 }
- 

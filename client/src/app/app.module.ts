@@ -22,9 +22,10 @@ import { NotloggedinComponent } from './notloggedin/notloggedin.component';
 import { HeaderComponent } from './header/header.component';
 import { LeftmenuComponent } from './leftmenu/leftmenu.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
-import { UserManagementComponent } from './admin/user-management/user-management.component';
+import { UserManagementComponent } from './users/user-management/user-management.component';
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
-import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     HasRoleDirective,
     UserManagementComponent,
     RolesModalComponent,
-    MemberEditComponent
+    UserDetailComponent,
+    UserEditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+<h2>Pracownicy</h2>
+<div class="container-fluid">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Id</th>
+                    <th style="width: 15%;">Nazwa użytkownika</th>
+                    <th style="width: 15%;">Imię</th>
+                    <th style="width: 15%;">Nazwisko</th>
+                    <th style="width: 15%;">Rola</th> 
+                    <th style="width: 25%;"></th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users">
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td> 
+                    <td>{{user.name}}</td>
+                    <td>{{user.surname}}</td>
+                    <td>{{user.roles}}</td>
+                    <td>
+                        <button (click)="openRolesModal(user)" class="btn btn-outline-warning">Edytuj role</button>
+                        <button routerLink='/users/{{user.username}}'class="btn btn-outline-info">Zobacz szczegóły</button>
+                    </td>
+                </tr>
+            </tbody>
+    
+        </table>
+    </div>
+</div>
+

@@ -22,7 +22,7 @@ namespace API.Extensions
                 .AddSignInManager<SignInManager<AppUser>>()
                 .AddRoleValidator<RoleValidator<AppRole>>()
                 .AddEntityFrameworkStores<DataContext>();
-
+    
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => 
                 {
@@ -38,7 +38,7 @@ namespace API.Extensions
                 services.AddAuthorization(opt => 
                 {
                     opt.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
-                    opt.AddPolicy("BossPhotoRole", policy => policy.RequireRole("Admin", "Manager"));
+                   // opt.AddPolicy("BossPhotoRole", policy => policy.RequireRole("Admin", "Manager"));
 
                 });
 

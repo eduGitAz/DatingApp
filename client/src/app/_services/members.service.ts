@@ -27,12 +27,20 @@ baseUrl = environment.apiUrl;
     this.member = member;
 }
 
-  getData(){
+  getData(){ 
     return this.member;
   }
 
   updateMember(username: string, member: Member){
     return this.http.put(this.baseUrl + 'users/'+ username, member)
+  }
+
+    getUsersWithRoles() {
+    return this.http.get<Partial<User[]>>(this.baseUrl + 'users/users-with-roles');
+  }
+
+  updateUserRoles(username: string, roles: string[]) {
+    return this.http.post(this.baseUrl + 'users/edit-roles/' + username + '?roles=' + roles, {});
   }
 
 }

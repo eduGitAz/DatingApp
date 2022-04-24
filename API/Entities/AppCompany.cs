@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using API.DTOs;
 
 namespace API.Entities
 {

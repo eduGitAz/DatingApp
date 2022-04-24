@@ -63,5 +63,12 @@ namespace API.Data
         {
             _context.Entry(company).State = EntityState.Modified;
         }
+
+        public async Task<AppCompany> Add(AppCompany company)
+        {
+            await _context.Companies.AddAsync(company);
+            _context.SaveChanges();
+            return company;
+        }
     }
 }

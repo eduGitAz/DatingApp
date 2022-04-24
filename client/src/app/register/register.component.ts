@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter();
   model: any = {};
   
+  
   constructor(private accountService: AccountService, private toastr: ToastrService) { }
 
   ngOnInit(): void {

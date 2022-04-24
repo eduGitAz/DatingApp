@@ -14,5 +14,6 @@ namespace API.Interfaces
          Task<AppCompany> GetCompanyByNameAsync(string name);
          Task <IEnumerable<CompanyDto>> GetCompaniesDtoAsync();
          Task <CompanyDto> GetCompanyDtoAsync(string name);
+         Task <AppCompany> Add (AppCompany company);
     }
 }

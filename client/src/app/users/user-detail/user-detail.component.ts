@@ -1,14 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
 
 @Component({
-  selector: 'app-member-detail',
-  templateUrl: './member-detail.component.html',
-  styleUrls: ['./member-detail.component.css'] 
+  selector: 'app-user-detail',
+  templateUrl: './user-detail.component.html',
+  styleUrls: ['./user-detail.component.css']
 })
-export class MemberDetailComponent implements OnInit {
+export class UserDetailComponent implements OnInit {
   member: Member;
 
   constructor(private memberService: MembersService, private route: ActivatedRoute) { }
@@ -22,6 +22,10 @@ export class MemberDetailComponent implements OnInit {
     subscribe(member => { this.member = member})
   }
 
-
+  passOjbect(){
+    this.memberService.setData(this.member);
+  }
 
 }
+
+ 

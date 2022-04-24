@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RolesModalComponent } from 'src/app/modals/roles-modal/roles-modal.component';
 import { User } from 'src/app/_models/user';
-import { AdminService } from 'src/app/_services/admin.service';
+import { MembersService } from 'src/app/_services/members.service';
 
 @Component({
   selector: 'app-user-management',
@@ -13,14 +13,14 @@ export class UserManagementComponent implements OnInit {
   users: Partial<User[]>;
   bsModalRef: BsModalRef;
 
-  constructor(private adminService: AdminService, private modalService: BsModalService) { }
+  constructor(private memberService: MembersService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.getUsersWithRoles();
   }
 
   getUsersWithRoles() {
-    this.adminService.getUsersWithRoles().subscribe(users => {
+    this.memberService.getUsersWithRoles().subscribe(users => {
       this.users = users;
     })
   }
@@ -40,7 +40,7 @@ export class UserManagementComponent implements OnInit {
         roles: [...values.filter(el => el.checked === true).map(el => el.name)]
       };
       if (rolesToUpdate) {
-        this.adminService.updateUserRoles(user.username, rolesToUpdate.roles).subscribe(() => {
+        this.memberService.updateUserRoles(user.username, rolesToUpdate.roles).subscribe(() => {
           user.roles = [...rolesToUpdate.roles]
         })
       }
