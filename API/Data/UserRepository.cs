@@ -20,14 +20,20 @@ namespace API.Data
             _context = context;
         }
 
-        public async Task<MemberDto> GetMemberDtoAsync(string username)
+         public async Task<MemberDto> GetMemberDtoByIdAsync(int id)
+        {
+            return await _context.Users
+                .Where(x => x.Id == id)
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync();
+        }
+        public async Task<MemberDto> GetMemberDtoByUsernameAsync(string username)
         {
             return await _context.Users
                 .Where(x => x.UserName == username)
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
-
         public async Task<IEnumerable<MemberDto>> GetMembersDtoAsync(int appCompanyId)
         {
                return await _context.Users
@@ -38,7 +44,9 @@ namespace API.Data
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
-            return await _context.Users.FindAsync(id);
+            return await _context.Users
+            .Include(a => a.AppCompany)
+            .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<AppUser> GetUserByUsernameAsync(string username)
@@ -47,20 +55,27 @@ namespace API.Data
             .Include(a => a.AppCompany)
             .SingleOrDefaultAsync(x => x.UserName == username);
         }
-
         public async Task<IEnumerable<AppUser>> GetUsersAsync()
         {
             return await _context.Users.ToListAsync();
+        }
+        
+         public void Update(AppUser user)
+        {
+            _context.Entry(user).State = EntityState.Modified;
         }
 
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
         }
-
-        public void Update(AppUser user)
+        public async Task<IEnumerable<MemberDto>> SearchMember(int appCompanyId, string search)
         {
-            _context.Entry(user).State = EntityState.Modified;
+               return await _context.Users
+                .Where(x => x.AppCompany.Id == appCompanyId && ( x.Name.Contains(search) || x.Surname.Contains(search) ))
+                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
         }
+     
     }
 }

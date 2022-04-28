@@ -31,24 +31,91 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
-            var userName = User.FindFirst(ClaimTypes.Name)?.Value;
-            var user = await _userRepository.GetUserByUsernameAsync(userName);
-        
-            int id = user.AppCompany.Id;
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
             
+            int id = currentUser.AppCompany.Id;
             var users = await _userRepository.GetMembersDtoAsync(id);
-
             return Ok(users);
         }
 
-
         
-        [HttpGet("{username}")]
-        public async Task<ActionResult<MemberDto>> GetUser(string username)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<MemberDto>> GetUser(int id)
         {
-            return await _userRepository.GetMemberDtoAsync(username);
+            return await _userRepository.GetMemberDtoByIdAsync(id);
 
         } 
+
+        [HttpPost("search")]
+        public async Task<ActionResult<IEnumerable<MemberDto>>> SearchMember(SearchDto search)
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            int id = currentUser.AppCompany.Id;
+
+            var users = await _userRepository.SearchMember(id, search.search);
+            return Ok(users);
+        }
+
+        [Authorize(Policy = "RequireAdminRole")]
+        [HttpPost("add")] 
+         public async Task<ActionResult> AddUser(MemberAddDto memberAddDto)
+        {
+
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+          
+
+            if (await UserExists(memberAddDto.Username)) return BadRequest("Username is taken");
+
+            AppUser user = new AppUser{
+                UserName = memberAddDto.Username,
+                Name = memberAddDto.Name,
+                Surname = memberAddDto.Surname,
+                AppCompany = currentUser.AppCompany
+            }; 
+
+            user.UserName = memberAddDto.Username.ToLower(); 
+            var result = await _userManager.CreateAsync(user, memberAddDto.Password);
+            if(!result.Succeeded) return BadRequest(result.Errors);
+
+            var roleResult = await _userManager.AddToRoleAsync(user, "Installer");
+            if (!roleResult.Succeeded) return BadRequest(result.Errors);
+
+            return Ok();
+        }
+        private async Task<bool> UserExists(string username)
+        {
+            return await _userManager.Users.AnyAsync(x => x.UserName == username.ToLower());
+        } 
+
+
+         [Authorize(Policy = "RequireAdminRole")]
+         [HttpPut("{id}")]
+         public async Task<ActionResult> UpdateUser(int id, MemberUpdateDto memberUpdateDto)
+        {
+    
+           var user = await _userRepository.GetUserByIdAsync(id);
+            _mapper.Map(memberUpdateDto, user);
+            _userRepository.Update(user);
+            
+
+            if (await _userRepository.SaveAllAsync()) return NoContent();
+            return BadRequest("Dane nie zostały zaktualizowane");
+        }
+
+       
+        [Authorize(Policy = "RequireAdminRole")]
+        [HttpDelete("delete/{id}")]
+        public async Task<ActionResult> DeleteUser(int id)
+        {
+            var user = await _userRepository.GetUserByIdAsync(id);
+            await _userManager.DeleteAsync(user);
+            return Ok();
+        }
+
+      
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpGet("users-with-roles")]
@@ -58,7 +125,6 @@ namespace API.Controllers
             var userName = User.FindFirst(ClaimTypes.Name)?.Value;
             var user = await _userRepository.GetUserByUsernameAsync(userName);
         
-
             var users = await _userManager.Users
             .Include(r => r.UserRoles)
             .ThenInclude (r => r.Role) 
@@ -94,20 +160,10 @@ namespace API.Controllers
 
             return Ok(await _userManager.GetRolesAsync(user));
         }
-
-         [Authorize(Policy = "RequireAdminRole")]
-         [HttpPut("{username}")]
-         public async Task<ActionResult> UpdateUser(string username, MemberUpdateDto memberUpdateDto)
-        {
-    
-           var user = await _userRepository.GetUserByUsernameAsync(username);
-            _mapper.Map(memberUpdateDto, user);
-            _userRepository.Update(user);
-            
-
-            if (await _userRepository.SaveAllAsync()) return NoContent();
-            return BadRequest("Dane nie zostały zaktualizowane");
-        }
   
     }
+    
+         
+    
 }
+

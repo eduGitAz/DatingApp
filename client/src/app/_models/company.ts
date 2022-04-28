@@ -3,7 +3,7 @@ import { Member } from "./member";
 
 export interface Company {
     id: number;
-    name: string;
+    companyName: string;
     taxNumber: string;
     fgazNumber: string;
     streetNumber: string;

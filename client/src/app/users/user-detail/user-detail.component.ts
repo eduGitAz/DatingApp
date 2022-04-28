@@ -18,13 +18,10 @@ export class UserDetailComponent implements OnInit {
   }
 
   loadMember(){
-    this.memberService.getMember(this.route.snapshot.paramMap.get('username')).
+    this.memberService.getMember(this.route.snapshot.paramMap.get('id')).
     subscribe(member => { this.member = member})
   }
 
-  passOjbect(){
-    this.memberService.setData(this.member);
-  }
 
 }
 

@@ -26,6 +26,7 @@ import { UserManagementComponent } from './users/user-management/user-management
 import { RolesModalComponent } from './modals/roles-modal/roles-modal.component';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { UserAddComponent } from './users/user-add/user-add.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
     UserManagementComponent,
     RolesModalComponent,
     UserDetailComponent,
-    UserEditComponent
+    UserEditComponent,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,

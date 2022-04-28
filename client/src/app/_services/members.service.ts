@@ -10,7 +10,7 @@ import { User } from '../_models/user';
 })
 export class MembersService {
 baseUrl = environment.apiUrl;
-
+ 
   member: Member;
   constructor(private http: HttpClient) { }
 
@@ -23,19 +23,11 @@ baseUrl = environment.apiUrl;
   }
 
 
-  setData(member: Member){ 
-    this.member = member;
-}
-
-  getData(){ 
-    return this.member;
+  updateMember(id: Number, member: Member){
+    return this.http.put(this.baseUrl + 'users/'+ id, member)
   }
 
-  updateMember(username: string, member: Member){
-    return this.http.put(this.baseUrl + 'users/'+ username, member)
-  }
-
-    getUsersWithRoles() {
+  getUsersWithRoles() {
     return this.http.get<Partial<User[]>>(this.baseUrl + 'users/users-with-roles');
   }
 
@@ -43,4 +35,7 @@ baseUrl = environment.apiUrl;
     return this.http.post(this.baseUrl + 'users/edit-roles/' + username + '?roles=' + roles, {});
   }
 
+  addMember(model:any){
+    return this.http.post(this.baseUrl + "users/add", model);
+  }
 }

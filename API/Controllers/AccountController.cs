@@ -43,7 +43,7 @@ namespace API.Controllers
             };
 
             AppUser user = new AppUser{
-                UserName =registerDto.Username,
+                UserName = registerDto.Username,
                 Name = registerDto.Name,
                 Surname = registerDto.Surname,
             }; 
