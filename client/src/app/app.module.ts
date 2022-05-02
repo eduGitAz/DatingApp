@@ -27,7 +27,7 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { UserAddComponent } from './users/user-add/user-add.component';
     RolesModalComponent,
     UserDetailComponent,
     UserEditComponent,
-    UserAddComponent,
+    UserAddComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +56,8 @@ import { UserAddComponent } from './users/user-add/user-add.component';
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    Ng2SearchPipeModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

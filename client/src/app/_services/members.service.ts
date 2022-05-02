@@ -1,8 +1,11 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
 import { User } from '../_models/user';
+
 
 
 @Injectable({
@@ -10,7 +13,7 @@ import { User } from '../_models/user';
 })
 export class MembersService {
 baseUrl = environment.apiUrl;
- 
+
   member: Member;
   constructor(private http: HttpClient) { }
 
@@ -26,11 +29,11 @@ baseUrl = environment.apiUrl;
   updateMember(id: Number, member: Member){
     return this.http.put(this.baseUrl + 'users/'+ id, member)
   }
-
+  
   getUsersWithRoles() {
     return this.http.get<Partial<User[]>>(this.baseUrl + 'users/users-with-roles');
   }
-
+ 
   updateUserRoles(username: string, roles: string[]) {
     return this.http.post(this.baseUrl + 'users/edit-roles/' + username + '?roles=' + roles, {});
   }
@@ -40,6 +43,12 @@ baseUrl = environment.apiUrl;
   }
 
   deleteMember(userId: Number){
-    return this.http.delete(this.baseUrl + "users/delete/" + userId);     
+    return this.http.delete(this.baseUrl + "users/delete/" + userId);      
   }
+
+  searchMember(model: any){
+    return this.http.post(this.baseUrl + "users/search",  model);     
+  }
+
+
 }

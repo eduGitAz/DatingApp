@@ -69,13 +69,7 @@ namespace API.Data
         {
             return await _context.SaveChangesAsync() > 0;
         }
-        public async Task<IEnumerable<MemberDto>> SearchMember(int appCompanyId, string search)
-        {
-               return await _context.Users
-                .Where(x => x.AppCompany.Id == appCompanyId && ( x.Name.Contains(search) || x.Surname.Contains(search) ))
-                .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-                .ToListAsync();
-        }
+     
      
     }
 }

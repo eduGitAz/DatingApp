@@ -1,5 +1,10 @@
 
       <h2>Pracownicy</h2>
+      <form #searchForm="ngForm" class="form-inline mt-2 mb-4" >
+  
+        <input type="text" class="form-control" name = "search" [(ngModel)]="searchText" placeholder="Wyszukaj pracownika">
+        
+    </form>
         <div class="container-fluid">
             <div class="row">
                 <table class="table">
@@ -13,7 +18,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let member of members">
+                        <tr *ngFor="let member of members | filter:searchText">
                             <td>{{member.id}}</td>
                             <td>{{member.username}}</td>
                             <td>{{member.name}}</td>

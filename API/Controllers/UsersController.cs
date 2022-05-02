@@ -47,16 +47,7 @@ namespace API.Controllers
 
         } 
 
-        [HttpPost("search")]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> SearchMember(SearchDto search)
-        {
-            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
-            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
-            int id = currentUser.AppCompany.Id;
 
-            var users = await _userRepository.SearchMember(id, search.search);
-            return Ok(users);
-        }
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpPost("add")] 
@@ -115,7 +106,6 @@ namespace API.Controllers
             return NoContent();
         }
 
-      
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpGet("users-with-roles")]

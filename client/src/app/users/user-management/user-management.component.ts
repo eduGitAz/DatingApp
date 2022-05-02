@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Subject } from 'rxjs';
 import { RolesModalComponent } from 'src/app/modals/roles-modal/roles-modal.component';
 import { User } from 'src/app/_models/user';
 import { MembersService } from 'src/app/_services/members.service';
@@ -12,19 +13,15 @@ import { MembersService } from 'src/app/_services/members.service';
 export class UserManagementComponent implements OnInit {
   users: Partial<User[]>;
   bsModalRef: BsModalRef;
+  searchText;
 
-  constructor(private memberService: MembersService, private modalService: BsModalService) { }
+  constructor(private memberService: MembersService, private modalService: BsModalService) { 
+  }
 
   ngOnInit(): void {
     this.getUsersWithRoles();
   }
 
-
-  searchMember() {
-    
-  }
-
-  
   getUsersWithRoles() {
     this.memberService.getUsersWithRoles().subscribe(users => {
       this.users = users;

@@ -9,7 +9,7 @@ import { MembersService } from 'src/app/_services/members.service';
 })
 export class MemberListComponent implements OnInit {
   members: Member[];
-
+  searchText;
   constructor(private memberService: MembersService) { }
 
   ngOnInit(): void {
