@@ -18,6 +18,7 @@ export class UserAddComponent implements OnInit {
   addMember(){
     this.membersService.addMember(this.model).subscribe(response => {
       console.log(response);
+      this.toastr.success("Poprawnie dodano pracownika"); 
     }, error => {
       console.log(error);
       this.toastr.error(error.error); 

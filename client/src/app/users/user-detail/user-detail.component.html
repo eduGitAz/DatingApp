@@ -11,7 +11,7 @@
             <strong>Nazwa użytkownika:</strong>
             <p>{{member.username}}</p>
         </div>
-        <div>
+        <div> 
             <strong>Imię i nazwisko:</strong>
             <p>{{member.name}} {{member.surname}}</p>   
         </div>
@@ -19,7 +19,8 @@
         <div class="card-footer">
          <div class="btn-group d-flex">
         <button routerLink='/user/edit/{{member.id}}'class="btn btn-outline-warning">Edytuj</button>
-            <button class="btn btn-outline-danger">Usuń</button>
+       
+        <button (click)="deleteMember()" class="btn btn-outline-danger">Usuń</button>
          </div> 
         </div>
     </div>

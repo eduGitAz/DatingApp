@@ -38,4 +38,8 @@ baseUrl = environment.apiUrl;
   addMember(model:any){
     return this.http.post(this.baseUrl + "users/add", model);
   }
+
+  deleteMember(userId: Number){
+    return this.http.delete(this.baseUrl + "users/delete/" + userId);     
+  }
 }

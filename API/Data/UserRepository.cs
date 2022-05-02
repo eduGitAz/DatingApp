@@ -44,7 +44,7 @@ namespace API.Data
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
-            return await _context.Users
+            return await _context.Users 
             .Include(a => a.AppCompany)
             .SingleOrDefaultAsync(x => x.Id == id);
         }
@@ -62,8 +62,8 @@ namespace API.Data
         
          public void Update(AppUser user)
         {
-            _context.Entry(user).State = EntityState.Modified;
-        }
+            _context.Entry(user).State = EntityState.Modified; 
+        } 
 
         public async Task<bool> SaveAllAsync()
         {

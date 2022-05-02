@@ -106,13 +106,13 @@ namespace API.Controllers
         }
 
        
-        [Authorize(Policy = "RequireAdminRole")]
+       
         [HttpDelete("delete/{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {
             var user = await _userRepository.GetUserByIdAsync(id);
             await _userManager.DeleteAsync(user);
-            return Ok();
+            return NoContent();
         }
 
       

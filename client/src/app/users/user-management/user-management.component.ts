@@ -19,6 +19,12 @@ export class UserManagementComponent implements OnInit {
     this.getUsersWithRoles();
   }
 
+
+  searchMember() {
+    
+  }
+
+  
   getUsersWithRoles() {
     this.memberService.getUsersWithRoles().subscribe(users => {
       this.users = users;

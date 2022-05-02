@@ -28,6 +28,7 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +48,7 @@ import { UserAddComponent } from './users/user-add/user-add.component';
     RolesModalComponent,
     UserDetailComponent,
     UserEditComponent,
-    UserAddComponent
+    UserAddComponent,
   ],
   imports: [
     BrowserModule,

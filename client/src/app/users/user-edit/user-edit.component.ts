@@ -16,7 +16,7 @@ export class UserEditComponent implements OnInit {
   member: Member;
 
   constructor(private memberService: MembersService, private toastr: ToastrService, private route: ActivatedRoute) { 
-    //this.member = this.memberService.getData();
+    
    }
 
   ngOnInit(): void {

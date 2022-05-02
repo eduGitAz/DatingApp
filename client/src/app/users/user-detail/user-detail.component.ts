@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Member } from 'src/app/_models/member';
 import { MembersService } from 'src/app/_services/members.service';
 
@@ -10,10 +11,9 @@ import { MembersService } from 'src/app/_services/members.service';
 })
 export class UserDetailComponent implements OnInit {
   member: Member;
+  constructor(private memberService: MembersService, private route: ActivatedRoute, private toastr: ToastrService) { }
 
-  constructor(private memberService: MembersService, private route: ActivatedRoute) { }
-
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.loadMember();
   }
 
@@ -21,6 +21,15 @@ export class UserDetailComponent implements OnInit {
     this.memberService.getMember(this.route.snapshot.paramMap.get('id')).
     subscribe(member => { this.member = member})
   }
+
+  
+  deleteMember(){
+    this.memberService.deleteMember(this.member.id).subscribe(() => {
+      this.toastr.warning('Pracownik został usunięty');
+    })
+  }
+
+
 
 
 }
