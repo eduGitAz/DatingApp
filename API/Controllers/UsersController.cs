@@ -13,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-   
+  
     public class UsersController : BaseApiController
     {
         private readonly UserManager<AppUser> _userManager;
@@ -27,7 +27,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
@@ -39,15 +39,13 @@ namespace API.Controllers
             return Ok(users);
         }
 
-        
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpGet("{id}")]
         public async Task<ActionResult<MemberDto>> GetUser(int id)
         {
             return await _userRepository.GetMemberDtoByIdAsync(id);
 
         } 
-
-
 
         [Authorize(Policy = "RequireAdminRole")]
         [HttpPost("add")] 
@@ -97,7 +95,7 @@ namespace API.Controllers
         }
 
        
-       
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpDelete("delete/{id}")]
         public async Task<ActionResult> DeleteUser(int id)
         {

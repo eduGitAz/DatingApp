@@ -20,32 +20,30 @@ namespace API.Data
             _context = context;
         }
 
-        public async Task<IEnumerable<CompanyDto>> GetCompaniesDtoAsync()
+        public async Task<CompanyDto> GetCompanyDtoByIdAsync(int id)
         {
             return await _context.Companies
-            .ProjectTo<CompanyDto>(_mapper.ConfigurationProvider)
-            .ToListAsync();
+                .Where(x => x.Id == id)
+                .ProjectTo<CompanyDto>(_mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync();
         }
-        public async Task<CompanyDto> GetCompanyDtoAsync(string name)
+       public async Task<CompanyDto> GetCompanyDtoByNameAsync(string name)
         {
             return await _context.Companies
             .Where(x => x.Name == name)
             .ProjectTo<CompanyDto>(_mapper.ConfigurationProvider)
             .SingleOrDefaultAsync();
         }
-
-        public async Task<IEnumerable<AppCompany>> GetCompaniesAsync()
+        public async Task<IEnumerable<CompanyDto>> GetCompaniesDtoAsync()
         {
             return await _context.Companies
-            .Include(u => u.Users)
+            .ProjectTo<CompanyDto>(_mapper.ConfigurationProvider)                   
             .ToListAsync();
         }
-
         public async Task<AppCompany> GetCompanyByIdAsync(int id)
         {
             return await _context.Companies.FindAsync(id);
         }
-
         public async Task<AppCompany> GetCompanyByNameAsync(string name)
         {
             return await _context.Companies
@@ -53,15 +51,22 @@ namespace API.Data
             .Include(c => c.Customers)
             .SingleOrDefaultAsync(x => x.Name == name);
         }
-
-        public async Task<bool> SaveAllAsync()
+        
+        public async Task<IEnumerable<AppCompany>> GetCompaniesAsync()
         {
-            return await _context.SaveChangesAsync() > 0;
+            return await _context.Companies
+            .Include(u => u.Users)
+            .ToListAsync();
         }
 
         public void Update(AppCompany company)
         {
             _context.Entry(company).State = EntityState.Modified;
+        }
+
+        public async Task<bool> SaveAllAsync()
+        {
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public async Task<AppCompany> Add(AppCompany company)

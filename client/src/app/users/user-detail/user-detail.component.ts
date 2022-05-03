@@ -22,11 +22,13 @@ export class UserDetailComponent implements OnInit {
     subscribe(member => { this.member = member})
   }
 
+
   
   deleteMember(){
+    if(confirm('Czy na pewno chcesz usunąc użytkownika "'+ this.member.name + '"?')){
     this.memberService.deleteMember(this.member.id).subscribe(() => {
-      this.toastr.warning('Pracownik został usunięty');
-    })
+      this.toastr.success('Pracownik został usunięty');
+    })}
   }
 
 

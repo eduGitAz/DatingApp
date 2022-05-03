@@ -7,13 +7,14 @@ namespace API.Interfaces
 {
     public interface ICompanyRepository
     {
-        void Update(AppCompany company);
-         Task<bool> SaveAllAsync();
-         Task<IEnumerable<AppCompany>> GetCompaniesAsync();  
+         Task <CompanyDto> GetCompanyDtoByIdAsync(int id);
+         Task <CompanyDto> GetCompanyDtoByNameAsync(string name);
+         Task <IEnumerable<CompanyDto>> GetCompaniesDtoAsync();
          Task<AppCompany> GetCompanyByIdAsync(int id);
          Task<AppCompany> GetCompanyByNameAsync(string name);
-         Task <IEnumerable<CompanyDto>> GetCompaniesDtoAsync();
-         Task <CompanyDto> GetCompanyDtoAsync(string name);
+         Task<IEnumerable<AppCompany>> GetCompaniesAsync();
+         void Update(AppCompany company);
+         Task<bool> SaveAllAsync();
          Task <AppCompany> Add (AppCompany company);
     }
 }

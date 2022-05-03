@@ -27,10 +27,10 @@ namespace API.Controllers
             return Ok(companies);
         }
 
-        [HttpGet("{name}")]
-        public async Task<ActionResult<CompanyDto>> GetCompany(string name)
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CompanyDto>> GetCompany(int id)
         {
-            return await _comapnyRepository.GetCompanyDtoAsync(name);
+            return await _comapnyRepository.GetCompanyDtoByIdAsync(id);
 
         }
 

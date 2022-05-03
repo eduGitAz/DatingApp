@@ -10,5 +10,5 @@ namespace API.Entities
         public string Surname { get; set; }
         public AppCompany AppCompany { get; set; }
         public ICollection<AppUserRole> UserRoles { get; set; }
-    }
+    } 
 }

@@ -20,6 +20,27 @@ namespace API.Data
             _mapper = mapper;
             _context = context;
         }
+
+        public async Task<CustomerDto> GetCustomerDtoByIdAsync(int id)
+        {
+            return await _context.Customers
+                .Where(x => x.Id == id)
+                .ProjectTo<CustomerDto>(_mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync();
+        }
+        public async Task<CustomerDto> GetCustomerDtoByNameAsync(string name)
+        {
+                return await _context.Customers
+                .Where(x => x.Name == name)
+                .ProjectTo<CustomerDto>(_mapper.ConfigurationProvider)
+                .SingleOrDefaultAsync();
+        }
+        public async Task<IEnumerable<CustomerDto>> GetCustomersDtoAsync()
+        {
+                return await _context.Customers
+                .ProjectTo<CustomerDto>(_mapper.ConfigurationProvider)
+                .ToListAsync();
+        }
         public async Task<AppCustomer> GetCustomerByIdAsync(int id)
         {
             return await _context.Customers.FindAsync(id);
@@ -30,36 +51,43 @@ namespace API.Data
                 return await _context.
                 Customers.SingleOrDefaultAsync(x => x.Name == name);
         }
-
-        public async Task<CustomerDto> GetCustomerDtoAsync(string name)
-        {
-                return await _context.Customers
-                .Where(x => x.Name == name)
-                .ProjectTo<CustomerDto>(_mapper.ConfigurationProvider)
-                .SingleOrDefaultAsync();
-        }
-
         public async Task<IEnumerable<AppCustomer>> GetCustomersAsync()
         {
                return await _context.Customers
               .ToListAsync();
         }
 
-        public async Task<IEnumerable<CustomerDto>> GetCustomersDtoAsync()
+        public void Update(AppCustomer customer)
         {
-                return await _context.Customers
-                .ProjectTo<CustomerDto>(_mapper.ConfigurationProvider)
-                .ToListAsync();
+            _context.Entry(customer).State = EntityState.Modified;
         }
 
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync() > 0;
         }
-
-        public void Update(AppCustomer customer)
+        public async Task<AppCustomer> Add(AppCustomer customer)
         {
-            _context.Entry(customer).State = EntityState.Modified;
+            await _context.Customers.AddAsync(customer);
+            _context.SaveChanges();
+            return customer;
         }
+
+        public async Task<AppCustomer> Delete(int id)
+        {
+            var result = await _context.Customers
+            .FirstOrDefaultAsync( c => c.Id == id);
+            if(result != null)
+            {
+                _context.Customers.Remove(result);
+                await _context.SaveChangesAsync();
+                return result;
+            }   
+
+            return null;
+        }
+    
+
+        
     }
 }
