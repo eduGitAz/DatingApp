@@ -30,7 +30,11 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CustomerDto>>> GetCustomers()
         {
-            var customers = await _customerRepository.GetCustomersDtoAsync();
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            
+            int id = currentUser.AppCompany.Id;
+            var customers = await _customerRepository.GetCustomersDtoAsync(id);
 
             return Ok(customers);
         } 
@@ -56,6 +60,7 @@ namespace API.Controllers
                 StreetNumber = customerDto.StreetNumber,
                 City = customerDto.City,
                 PostCode = customerDto.PostCode,
+                PhoneNumber = customerDto.PhoneNumber,
                 AppCompany = currentUser.AppCompany
             }; 
 

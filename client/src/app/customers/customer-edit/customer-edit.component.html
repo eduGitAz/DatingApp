@@ -1,0 +1,19 @@
+<h2 class="mt-2 mb-4 ml-2">Edycja klienta</h2>
+
+<div class="col-4" *ngIf="customer">
+    <form #editForm="ngForm" (ngSubmit)="updateCustomer()">
+        <h4>Imię</h4>
+        <textarea class="form-control" [(ngModel)]="customer.name" name="name" rows="1"></textarea>
+        <h4 class="mt-2">Nazwisko</h4>
+        <textarea class="form-control" [(ngModel)]="customer.surname" name="surname" rows="1"></textarea>
+        <h4 class="mt-2">Ulica i numer domu</h4>
+        <textarea class="form-control" [(ngModel)]="customer.streetNumber" name="streetNumber" rows="1"></textarea>
+        <h4 class="mt-2">Miasto</h4>
+        <textarea class="form-control" [(ngModel)]="customer.city" name="city" rows="1"></textarea>
+        <h4 class="mt-2">Kod pocztowy</h4>
+        <textarea class="form-control" [(ngModel)]="customer.postCode" name="postCode" rows="1"></textarea>
+        <h4 class="mt-2">Numer telefonu</h4>
+        <textarea class="form-control" [(ngModel)]="customer.phoneNumber" name="phoneNumber" rows="1"></textarea>
+        <button [disabled]="!editForm.dirty" class="btn btn-outline-success mt-2">Zapisz zmiany</button>
+    </form>
+</div> 

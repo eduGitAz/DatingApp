@@ -4,7 +4,6 @@ import { UserManagementComponent } from './users/user-management/user-management
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
-import { HomeComponent } from './home/home.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { NavComponent } from './nav/nav.component';
@@ -15,6 +14,11 @@ import { AuthGuard } from './_guards/auth.guard';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
+import { HomeComponent } from './home/home.component';
+import { CustomerListComponent } from './customers/customer-list/customer-list.component';
+import { CustomerAddComponent } from './customers/customer-add/customer-add.component';
+import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
+import { CustomerEditComponent } from './customers/customer-edit/customer-edit.component';
 
 
 const routes: Routes = [
@@ -30,9 +34,14 @@ const routes: Routes = [
       {path: 'user/add', component: UserAddComponent},
      
 
-     
-      {path: 'members/:id', component: MemberDetailComponent}, 
       {path: 'members', component: MemberListComponent},
+      {path: 'members/:id', component: MemberDetailComponent}, 
+
+      {path: 'customers', component: CustomerListComponent},
+      {path: 'customers/:id', component: CustomerDetailComponent},
+      {path: 'customer/edit/:id', component: CustomerEditComponent},
+      {path: 'customer/add', component: CustomerAddComponent},
+      
     ]
   },
   {path: 'errors', component: TestErrorsComponent},

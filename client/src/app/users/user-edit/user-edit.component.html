@@ -2,10 +2,10 @@
 
 <div class="col-4" *ngIf="member">
     <form #editForm="ngForm" (ngSubmit)="updateMember()">
-        <h4>Name</h4>
+        <h4>Imię</h4>
         <textarea class="form-control" [(ngModel)]="member.name" name="name" rows="1"></textarea>
-        <h4 class="mt-2">Surname</h4>
+        <h4 class="mt-2">Nazwisko</h4>
         <textarea class="form-control" [(ngModel)]="member.surname" name="surname" rows="1"></textarea>
         <button [disabled]="!editForm.dirty" class="btn btn-outline-success mt-2">Zapisz zmiany</button>
     </form>
-    </div> 
+</div> 

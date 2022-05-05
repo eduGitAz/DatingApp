@@ -1,8 +1,7 @@
-<h2 class="mt-2 mb-4 ml-2">Pracownicy</h2>
+<h2 class="mt-2 mb-2">Pracownicy</h2>
+
 <div class="row">
 <button routerLink='/user/add/' class="btn btn-outline-success mt-2 mb-4 ml-3 mr-4">Dodaj pracownika</button>
-
-
 <form #searchForm="ngForm" class="form-inline mt-2 mb-4" >
     <input type="text" class="form-control" name = "search" [(ngModel)]="searchText" placeholder="Wyszukaj pracownika">
 </form>
@@ -12,7 +11,7 @@
     <div class="row">
         <table class="table">
             <thead>
-                <tr>
+                <tr> 
                     <th style="width: 10%;">Id</th>
                     <th style="width: 13%;">Nazwa użytkownika</th> 
                     <th style="width: 10%;">Imię</th>    

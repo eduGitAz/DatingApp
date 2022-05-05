@@ -21,15 +21,22 @@ baseUrl = environment.apiUrl;
     return this.http.get<Member[]>(this.baseUrl + 'users');
   }
 
-  getMember(username: string){
-    return this.http.get<Member>(this.baseUrl + 'users/' + username);
+  getMember(id: string){
+    return this.http.get<Member>(this.baseUrl + 'users/' + id);
   }
-
 
   updateMember(id: Number, member: Member){
     return this.http.put(this.baseUrl + 'users/'+ id, member)
   }
   
+  addMember(model:any){
+    return this.http.post(this.baseUrl + "users/add", model);
+  }
+
+  deleteMember(id: Number){
+    return this.http.delete(this.baseUrl + "users/delete/" + id);      
+  }
+
   getUsersWithRoles() {
     return this.http.get<Partial<User[]>>(this.baseUrl + 'users/users-with-roles');
   }
@@ -37,18 +44,5 @@ baseUrl = environment.apiUrl;
   updateUserRoles(username: string, roles: string[]) {
     return this.http.post(this.baseUrl + 'users/edit-roles/' + username + '?roles=' + roles, {});
   }
-
-  addMember(model:any){
-    return this.http.post(this.baseUrl + "users/add", model);
-  }
-
-  deleteMember(userId: Number){
-    return this.http.delete(this.baseUrl + "users/delete/" + userId);      
-  }
-
-  searchMember(model: any){
-    return this.http.post(this.baseUrl + "users/search",  model);     
-  }
-
 
 }

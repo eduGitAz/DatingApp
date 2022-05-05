@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
-import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -28,12 +27,16 @@ import { UserDetailComponent } from './users/user-detail/user-detail.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserAddComponent } from './users/user-add/user-add.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { HomeComponent } from './home/home.component';
+import { CustomerListComponent } from './customers/customer-list/customer-list.component';
+import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
+import { CustomerEditComponent } from './customers/customer-edit/customer-edit.component';
+import { CustomerAddComponent } from './customers/customer-add/customer-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    HomeComponent,
     RegisterComponent,
     MemberListComponent,
     MemberDetailComponent,
@@ -48,7 +51,12 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     RolesModalComponent,
     UserDetailComponent,
     UserEditComponent,
-    UserAddComponent
+    UserAddComponent,
+    HomeComponent,
+    CustomerListComponent,
+    CustomerDetailComponent,
+    CustomerEditComponent,
+    CustomerAddComponent
   ],
   imports: [
     BrowserModule,

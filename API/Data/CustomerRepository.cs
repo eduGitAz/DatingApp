@@ -35,21 +35,25 @@ namespace API.Data
                 .ProjectTo<CustomerDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
-        public async Task<IEnumerable<CustomerDto>> GetCustomersDtoAsync()
+        public async Task<IEnumerable<CustomerDto>> GetCustomersDtoAsync(int appCompanyId)
         {
                 return await _context.Customers
+                .Where(x => x.AppCompany.Id == appCompanyId)
                 .ProjectTo<CustomerDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
         public async Task<AppCustomer> GetCustomerByIdAsync(int id)
         {
-            return await _context.Customers.FindAsync(id);
+             return await _context.Customers 
+            .Include(a => a.AppCompany)
+            .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<AppCustomer> GetCustomerByNameAsync(string name)
         {
-                return await _context.
-                Customers.SingleOrDefaultAsync(x => x.Name == name);
+                return await _context.Customers
+                .Include(a => a.AppCompany)
+                .SingleOrDefaultAsync(x => x.Name == name);
         }
         public async Task<IEnumerable<AppCustomer>> GetCustomersAsync()
         {
