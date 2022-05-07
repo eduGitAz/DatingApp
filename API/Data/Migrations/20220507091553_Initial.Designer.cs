@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220409143203_Initial")]
+    [Migration("20220507091553_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,6 +67,9 @@ namespace API.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PostCode")
                         .HasColumnType("nvarchar(max)");
 
@@ -81,6 +84,57 @@ namespace API.Data.Migrations
                     b.HasIndex("AppCompanyId");
 
                     b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("API.Entities.AppDevice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AppCompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Power")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppCompanyId");
+
+                    b.ToTable("Devices");
+                });
+
+            modelBuilder.Entity("API.Entities.AppOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AppCompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppCompanyId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("API.Entities.AppRole", b =>
@@ -300,6 +354,32 @@ namespace API.Data.Migrations
                     b.Navigation("AppCompany");
                 });
 
+            modelBuilder.Entity("API.Entities.AppDevice", b =>
+                {
+                    b.HasOne("API.Entities.AppCompany", "AppCompany")
+                        .WithMany()
+                        .HasForeignKey("AppCompanyId");
+
+                    b.Navigation("AppCompany");
+                });
+
+            modelBuilder.Entity("API.Entities.AppOrder", b =>
+                {
+                    b.HasOne("API.Entities.AppCompany", "AppCompany")
+                        .WithMany("Orders")
+                        .HasForeignKey("AppCompanyId");
+
+                    b.HasOne("API.Entities.AppCustomer", "AppCustomer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppCompany");
+
+                    b.Navigation("AppCustomer");
+                });
+
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.HasOne("API.Entities.AppCompany", "AppCompany")
@@ -368,7 +448,14 @@ namespace API.Data.Migrations
                 {
                     b.Navigation("Customers");
 
+                    b.Navigation("Orders");
+
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("API.Entities.AppCustomer", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("API.Entities.AppRole", b =>

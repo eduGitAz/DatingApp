@@ -113,6 +113,28 @@ namespace API.Data.Migrations
                     b.ToTable("Devices");
                 });
 
+            modelBuilder.Entity("API.Entities.AppOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AppCompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppCompanyId");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("API.Entities.AppRole", b =>
                 {
                     b.Property<int>("Id")
@@ -339,6 +361,23 @@ namespace API.Data.Migrations
                     b.Navigation("AppCompany");
                 });
 
+            modelBuilder.Entity("API.Entities.AppOrder", b =>
+                {
+                    b.HasOne("API.Entities.AppCompany", "AppCompany")
+                        .WithMany("Orders")
+                        .HasForeignKey("AppCompanyId");
+
+                    b.HasOne("API.Entities.AppCustomer", "AppCustomer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppCompany");
+
+                    b.Navigation("AppCustomer");
+                });
+
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
                     b.HasOne("API.Entities.AppCompany", "AppCompany")
@@ -407,7 +446,14 @@ namespace API.Data.Migrations
                 {
                     b.Navigation("Customers");
 
+                    b.Navigation("Orders");
+
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("API.Entities.AppCustomer", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("API.Entities.AppRole", b =>

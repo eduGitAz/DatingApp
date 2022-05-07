@@ -29,7 +29,7 @@ namespace API.Controllers
 
         [Authorize(Policy = "RequireManagerRole")]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers() 
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);

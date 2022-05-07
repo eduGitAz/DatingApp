@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace API.Entities
 {
     public class AppCustomer
@@ -10,5 +12,6 @@ namespace API.Entities
         public string PostCode { get; set; }
         public string PhoneNumber { get; set; }
         public AppCompany AppCompany { get; set; }
+        public ICollection<AppOrder> Orders { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace API.Data
         public DbSet<AppCompany> Companies { get; set; }
         public DbSet<AppCustomer> Customers { get; set; }
         public DbSet<AppDevice> Devices { get; set; }
+        public DbSet<AppOrder> Orders { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -29,12 +30,17 @@ namespace API.Data
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
-                builder.Entity<AppRole>()
+            builder.Entity<AppRole>()
                 .HasMany(ur => ur.UserRoles)
                 .WithOne(u => u.Role)
                 .HasForeignKey(ur => ur.RoleId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
+
+            builder.Entity<AppOrder>()
+                .HasOne<AppCustomer>(c => c.AppCustomer)
+                .WithMany(o => o.Orders)
+                .HasForeignKey(c => c.CustomerId);
         }      
         }
     }

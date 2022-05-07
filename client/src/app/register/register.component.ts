@@ -18,10 +18,11 @@ export class RegisterComponent implements OnInit {
   register(){
     this.accountService.register(this.model).subscribe(response => {
       console.log(response);
+      this.toastr.success("Rejestracja powiodła się"); 
       this.cancel();
     }, error => {
       console.log(error);
-      this.toastr.error(error.error); 
+      this.toastr.error("Błąd w rejestracji - sprawdź poprawność danych"); 
     });
   }
 

@@ -28,6 +28,7 @@ const routes: Routes = [
     runGuardsAndResolvers: 'always',
     canActivate: [AuthGuard],
     children: [
+      {path: '', component: HomeComponent},
       {path: 'users/users-roles', component: UserManagementComponent, canActivate: [AdminGuard]},
       {path: 'users/:id', component: UserDetailComponent},
       {path: 'user/edit/:id', component: UserEditComponent},
