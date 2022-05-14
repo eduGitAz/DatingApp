@@ -32,6 +32,10 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
 import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
 import { CustomerEditComponent } from './customers/customer-edit/customer-edit.component';
 import { CustomerAddComponent } from './customers/customer-add/customer-add.component';
+import { OrderListComponent } from './orders/order-list/order-list.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
+import { OrderAddComponent } from './orders/order-add/order-add.component';
+import { OrderEditComponent } from './orders/order-edit/order-edit.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,11 @@ import { CustomerAddComponent } from './customers/customer-add/customer-add.comp
     CustomerListComponent,
     CustomerDetailComponent,
     CustomerEditComponent,
-    CustomerAddComponent
+    CustomerAddComponent,
+    OrderListComponent,
+    OrderDetailComponent,
+    OrderAddComponent,
+    OrderEditComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,15 @@
+<h2 class="mt-2 mb-4 ml-2">Edycja zlecenia</h2>
+
+<div class="col-4" *ngIf="order">
+    <form #editForm="ngForm" (ngSubmit)="updateOrder()">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Wybierz Klienta</label> 
+          <select class="form-control" [(ngModel)]="order.CustomerId" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let customer of customers" [ngValue]="customer.id">
+               ID:{{customer.id}} {{customer.name}} {{customer.surname}} 
+            </option>
+          </select>
+        </div>
+        <button class="btn btn-outline-success mt-2">Zapisz zmiany</button>
+    </form>
+</div>  

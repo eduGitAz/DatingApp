@@ -1,0 +1,16 @@
+<h2 class="mt-2 mb-4 ml-2">Dodawanie zlecenia</h2>
+<div class="col-4">
+<form #addForm="ngForm" (ngSubmit)="addOrder()" autocomplete="off" >
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Wybierz Klienta</label> 
+        <select class="form-control" [(ngModel)]="model.CustomerId" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let customer of customers" [ngValue]="customer.id">
+             ID:{{customer.id}} {{customer.name}} {{customer.surname}} 
+          </option>
+        </select>
+      </div>
+    <div class="form-group">
+        <button class="btn btn-outline-success mr-2"  type="submit">Dodaj</button>
+    </div>
+</form>
+</div>   

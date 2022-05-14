@@ -14,7 +14,7 @@ export class CustomerAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addCustomer(){
+  addCustomer(){ 
     this.customersService.addCustomer(this.model).subscribe(response => { 
       console.log(response);
       this.toastr.success("Poprawnie dodano klienta"); 

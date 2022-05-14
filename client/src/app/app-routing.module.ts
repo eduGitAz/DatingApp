@@ -19,6 +19,10 @@ import { CustomerListComponent } from './customers/customer-list/customer-list.c
 import { CustomerAddComponent } from './customers/customer-add/customer-add.component';
 import { CustomerDetailComponent } from './customers/customer-detail/customer-detail.component';
 import { CustomerEditComponent } from './customers/customer-edit/customer-edit.component';
+import { OrderListComponent } from './orders/order-list/order-list.component';
+import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
+import { OrderEditComponent } from './orders/order-edit/order-edit.component';
+import { OrderAddComponent } from './orders/order-add/order-add.component';
 
 
 const routes: Routes = [
@@ -42,6 +46,11 @@ const routes: Routes = [
       {path: 'customers/:id', component: CustomerDetailComponent},
       {path: 'customer/edit/:id', component: CustomerEditComponent},
       {path: 'customer/add', component: CustomerAddComponent},
+
+      {path: 'orders', component: OrderListComponent},
+      {path: 'orders/:id', component: OrderDetailComponent},
+      {path: 'order/edit/:id', component: OrderEditComponent},
+      {path: 'order/add', component: OrderAddComponent},
       
     ]
   },

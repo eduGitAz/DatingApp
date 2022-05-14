@@ -18,6 +18,11 @@ export class CustomersService {
   getCustomer(id: string){
     return this.http.get<Customer>(this.baseUrl + 'customers/' + id);
   }
+
+  getCustomerN(id: Number){
+    return this.http.get<Customer>(this.baseUrl + 'customers/' + id);
+  }
+
   updateCustomer(id: Number, customer: Customer){
     return this.http.put(this.baseUrl + 'customers/'+ id, customer)
   }

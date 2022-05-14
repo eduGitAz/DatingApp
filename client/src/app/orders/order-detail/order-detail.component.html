@@ -1,0 +1,24 @@
+<div class="row" *ngIf="order">    
+    <div class="col-4">
+        <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{order.id}}</h5>
+        <div>
+            <strong>Id:</strong>
+            <p>{{order.id}}</p>
+        </div>
+        <div> 
+            <strong>Imię i nazwisko klienta:</strong>
+            <p>{{order.appCustomer.name}} {{order.appCustomer.surname}}</p>   
+        </div>
+        </div>
+        <div class="card-footer">
+         <div class="btn-group d-flex">
+        <button routerLink='/order/edit/{{order.id}}'class="btn btn-outline-warning">Edytuj</button>
+       
+        <button (click)="deleteOrder()" class="btn btn-outline-danger">Usuń</button>
+         </div> 
+        </div>
+    </div>
+    </div>
+</div>

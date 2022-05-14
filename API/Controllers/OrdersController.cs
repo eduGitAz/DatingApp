@@ -28,9 +28,9 @@ namespace API.Controllers
             var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
             
             int id = currentUser.AppCompany.Id;
-            var customers = await _orderRepository.GetOrdersDtoAsync(id);
+            var orders = await _orderRepository.GetOrdersDtoAsync(id);
 
-            return Ok(customers);
+            return Ok(orders);
         } 
 
         [HttpGet("{id}")]

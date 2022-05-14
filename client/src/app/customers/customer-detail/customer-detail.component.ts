@@ -22,11 +22,10 @@ export class CustomerDetailComponent implements OnInit {
     subscribe(customer => { this.customer = customer})
   }
 
-  deleteCustomer(){
+  deleteCustomer(){ 
     if(confirm('Czy na pewno chcesz usunąc Klienta "'+ this.customer.name + '"?')){
     this.customerService.deleteCustomer(this.customer.id).subscribe(() => {
       this.toastr.success('Klient został usunięty');
     })}
-  }
-
+  } 
 }
