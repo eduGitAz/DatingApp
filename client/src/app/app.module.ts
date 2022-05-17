@@ -36,6 +36,8 @@ import { OrderListComponent } from './orders/order-list/order-list.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { OrderAddComponent } from './orders/order-add/order-add.component';
 import { OrderEditComponent } from './orders/order-edit/order-edit.component';
+import { CompanyEditComponent } from './company/company-edit/company-edit.component';
+import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { OrderEditComponent } from './orders/order-edit/order-edit.component';
     OrderListComponent,
     OrderDetailComponent,
     OrderAddComponent,
-    OrderEditComponent
+    OrderEditComponent,
+    CompanyEditComponent,
+    CompanyDetailComponent
   ],
   imports: [
     BrowserModule,

@@ -4,4 +4,4 @@ export interface Order {
     id: number;
     customerId: number;
     appCustomer: Customer;
-}
+} 

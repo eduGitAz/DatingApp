@@ -23,6 +23,8 @@ import { OrderListComponent } from './orders/order-list/order-list.component';
 import { OrderDetailComponent } from './orders/order-detail/order-detail.component';
 import { OrderEditComponent } from './orders/order-edit/order-edit.component';
 import { OrderAddComponent } from './orders/order-add/order-add.component';
+import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
+import { CompanyEditComponent } from './company/company-edit/company-edit.component';
 
 
 const routes: Routes = [
@@ -51,6 +53,9 @@ const routes: Routes = [
       {path: 'orders/:id', component: OrderDetailComponent},
       {path: 'order/edit/:id', component: OrderEditComponent},
       {path: 'order/add', component: OrderAddComponent},
+
+      {path: 'companies', component: CompanyDetailComponent},
+      {path: 'companies/edit/:id', component: CompanyEditComponent},
       
     ]
   },

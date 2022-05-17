@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Interfaces;
@@ -13,25 +14,38 @@ namespace API.Controllers
     {
         private readonly ICompanyRepository _comapnyRepository;
         private readonly IMapper _mapper;
-        public CompaniesController(ICompanyRepository comapnyRepository, IMapper mapper)
+        private readonly IUserRepository _userRepository;
+    
+        public CompaniesController(ICompanyRepository comapnyRepository, IMapper mapper, IUserRepository userRepository)
         {
             _mapper = mapper;
             _comapnyRepository = comapnyRepository;
+            _userRepository = userRepository;
         }
         
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<CompanyDto>>> GetCompanies()
-        {
-            var companies = await _comapnyRepository.GetCompaniesDtoAsync();
+     
 
-            return Ok(companies);
+        [HttpGet]
+        public async Task<ActionResult<CompanyDto>> GetCompany()
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+
+            return await _comapnyRepository.GetCompanyDtoByIdAsync(currentUser.AppCompany.Id);
+
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<CompanyDto>> GetCompany(int id)
+        [HttpPut("{id}")]
+         public async Task<ActionResult> UpdateCompany(int id, CompanyUpdateDto companyUpdateDto)  
         {
-            return await _comapnyRepository.GetCompanyDtoByIdAsync(id);
+          
+            var company = await _comapnyRepository.GetCompanyByIdAsync(id);
+            _mapper.Map(companyUpdateDto, company);
+            _comapnyRepository.Update(company);
+            
 
+            if (await _comapnyRepository.SaveAllAsync()) return NoContent();
+            return BadRequest("Dane nie zostały zaktualizowane");
         }
 
 

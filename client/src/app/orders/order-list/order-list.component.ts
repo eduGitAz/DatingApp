@@ -11,17 +11,14 @@ import { OrdersService } from 'src/app/_services/orders.service';
 })
 export class OrderListComponent implements OnInit {
   orders: Partial<Order[]>;
-  searchText;
-  customer: Customer;
-  customers: Customer[];
-  constructor(private orderService: OrdersService, private customerService: CustomersService) { 
+  searchOrder;
+
+  constructor(private orderService: OrdersService) { 
  
   }
 
   ngOnInit(): void {
     this.getOrders();
-    
-   
   }
 
   getOrders() {

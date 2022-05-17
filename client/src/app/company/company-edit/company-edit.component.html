@@ -1,0 +1,19 @@
+<h2 class="mt-2 mb-4 ml-2">Edycja danych firmowych</h2>
+
+<div class="col-4" *ngIf="company">
+    <form #editForm="ngForm" (ngSubmit)="updateCompany()">
+        <h4>Nazwa firmy</h4>
+        <textarea class="form-control" [(ngModel)]="company.name" name="companyName" rows="1"></textarea>
+        <h4 class="mt-2">Numer NIP</h4>
+        <textarea class="form-control" [(ngModel)]="company.taxNumber" name="taxNumber" rows="1"></textarea>
+        <h4 class="mt-2">Numer F-gaz</h4> 
+        <textarea class="form-control" [(ngModel)]="company.fgazNumber" name="fgazNumber" rows="1"></textarea>
+        <h4 class="mt-2">Ulica i numer domu</h4>
+        <textarea class="form-control" [(ngModel)]="company.streetNumber" name="streetNumber" rows="1"></textarea>
+        <h4 class="mt-2">Miasto</h4> 
+        <textarea class="form-control" [(ngModel)]="company.city" name="city" rows="1"></textarea>
+        <h4 class="mt-2">Kod pocztowy</h4>
+        <textarea class="form-control" [(ngModel)]="company.postCode" name="postCode" rows="1"></textarea>
+        <button [disabled]="!editForm.dirty" class="btn btn-outline-success mt-2">Zapisz zmiany</button>
+    </form>
+</div>  

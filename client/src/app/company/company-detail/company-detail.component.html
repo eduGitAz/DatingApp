@@ -1,0 +1,38 @@
+<div class="row" *ngIf="company">    
+    <div class="col-4">
+        <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{company.name}}</h5>
+        <div>
+            <strong>Id:</strong>
+            <p>{{company.id}}</p>
+        </div>
+        <div> 
+            <strong>Nazwa firmy:</strong>
+            <p>{{company.name}}</p>   
+        </div>
+        <div> 
+            <strong>Numer F-gaz:</strong>
+            <p>{{company.fgazNumber}}</p>   
+        </div>
+        <div> 
+            <strong>Numer NIP:</strong> 
+            <p>{{company.taxNumber}}</p>   
+        </div>
+        <div> 
+            <strong>Ulica i numer domu:</strong>
+            <p>{{company.streetNumber}}</p>   
+        </div>
+        <div> 
+            <strong>Miasto i kod pocztowy:</strong>
+            <p>{{company.city}} {{company.postCode}}</p>        
+        </div>
+        </div>
+        <div class="card-footer">
+         <div class="btn-group d-flex">
+        <button routerLink='/companies/edit/{{company.id}}'class="btn btn-outline-warning">Edytuj</button>
+         </div> 
+        </div>
+    </div>
+    </div>
+</div>
