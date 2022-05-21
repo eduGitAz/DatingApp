@@ -1,0 +1,36 @@
+<div class="row" *ngIf="device">    
+    <div class="col-4">
+        <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{device.name}}</h5>
+        <div>
+            <strong>Id:</strong>
+            <p>{{device.id}}</p>
+        </div>
+        <div> 
+            <strong>Nazwa:</strong>
+            <p>{{device.name}}</p>
+        </div>
+        <div> 
+            <strong>Moc:</strong> 
+            <p>{{device.power}}</p>   
+        </div>
+        <div> 
+            <strong>Kolor:</strong>
+            <p>{{device.color}} 
+        </div>
+        <div> 
+            <strong>Cena:</strong>
+            <p>{{device.price}}</p>   
+        </div>
+        </div>
+        <div class="card-footer">
+         <div class="btn-group d-flex">
+        <button routerLink='/device/edit/{{device.id}}'class="btn btn-outline-warning">Edytuj</button>
+       
+        <button (click)="deleteDevice()" class="btn btn-outline-danger">Usuń</button>
+         </div> 
+        </div>
+    </div>
+    </div>
+</div>

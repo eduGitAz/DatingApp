@@ -6,7 +6,6 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
-import { NavComponent } from './nav/nav.component';
 import { NotloggedinComponent } from './notloggedin/notloggedin.component';
 import { RegisterComponent } from './register/register.component';
 import { AdminGuard } from './_guards/admin.guard';
@@ -25,6 +24,10 @@ import { OrderEditComponent } from './orders/order-edit/order-edit.component';
 import { OrderAddComponent } from './orders/order-add/order-add.component';
 import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
+import { DeviceListComponent } from './devices/device-list/device-list.component';
+import { DeviceDetailComponent } from './devices/device-detail/device-detail.component';
+import { DeviceEditComponent } from './devices/device-edit/device-edit.component';
+import { DeviceAddComponent } from './devices/device-add/device-add.component';
 
 
 const routes: Routes = [
@@ -56,6 +59,11 @@ const routes: Routes = [
 
       {path: 'companies', component: CompanyDetailComponent},
       {path: 'companies/edit/:id', component: CompanyEditComponent},
+
+      {path: 'devices', component: DeviceListComponent},
+      {path: 'devices/:id', component: DeviceDetailComponent},
+      {path: 'device/edit/:id', component: DeviceEditComponent},
+      {path: 'device/add', component: DeviceAddComponent},
       
     ]
   },

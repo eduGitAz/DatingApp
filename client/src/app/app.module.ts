@@ -6,7 +6,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavComponent } from './nav/nav.component';
 import { RegisterComponent } from './register/register.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MemberDetailComponent } from './members/member-detail/member-detail.component';
@@ -38,11 +37,14 @@ import { OrderAddComponent } from './orders/order-add/order-add.component';
 import { OrderEditComponent } from './orders/order-edit/order-edit.component';
 import { CompanyEditComponent } from './company/company-edit/company-edit.component';
 import { CompanyDetailComponent } from './company/company-detail/company-detail.component';
+import { DeviceAddComponent } from './devices/device-add/device-add.component';
+import { DeviceListComponent } from './devices/device-list/device-list.component';
+import { DeviceEditComponent } from './devices/device-edit/device-edit.component';
+import { DeviceDetailComponent } from './devices/device-detail/device-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,
     RegisterComponent,
     MemberListComponent,
     MemberDetailComponent,
@@ -68,7 +70,11 @@ import { CompanyDetailComponent } from './company/company-detail/company-detail.
     OrderAddComponent,
     OrderEditComponent,
     CompanyEditComponent,
-    CompanyDetailComponent
+    CompanyDetailComponent,
+    DeviceAddComponent,
+    DeviceListComponent,
+    DeviceEditComponent,
+    DeviceDetailComponent
   ],
   imports: [
     BrowserModule,

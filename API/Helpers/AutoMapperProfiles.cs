@@ -19,6 +19,7 @@ namespace API.Helpers
             CreateMap<AppOrder, OrderDto>();
             CreateMap<OrderUpdateDto, AppOrder>();
             CreateMap<CompanyUpdateDto, AppCompany>();
+            CreateMap<DeviceUpdateDto, AppDevice>();
         }
     }
 }

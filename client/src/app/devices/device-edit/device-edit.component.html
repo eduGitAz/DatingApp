@@ -1,0 +1,15 @@
+<h2 class="mt-2 mb-4 ml-2">Edycja urządzenia</h2>
+
+<div class="col-4" *ngIf="device">
+    <form #editForm="ngForm" (ngSubmit)="updateDevice()">
+        <h4>Nazwa</h4>
+        <textarea class="form-control" [(ngModel)]="device.name" name="name" rows="1"></textarea>
+        <h4 class="mt-2">Moc</h4>
+        <textarea class="form-control" [(ngModel)]="device.power" name="power" rows="1"></textarea>
+        <h4 class="mt-2">Kolor</h4> 
+        <textarea class="form-control" [(ngModel)]="device.color" name="color" rows="1"></textarea>
+        <h4 class="mt-2">Cena</h4>
+        <textarea class="form-control" [(ngModel)]="device.price" name="price" rows="1"></textarea>
+        <button [disabled]="!editForm.dirty" class="btn btn-outline-success mt-2">Zapisz zmiany</button>
+    </form>
+</div>  

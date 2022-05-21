@@ -1,0 +1,39 @@
+<h2 class="mt-2 mb-2">Urządzenia</h2>
+
+<div class="row">
+<button routerLink='/device/add/' class="btn btn-outline-success mt-2 mb-4 ml-3 mr-4">Dodaj urządzenie</button>
+<form #searchForm="ngForm" class="form-inline mt-2 mb-4" >
+    <input type="text" class="form-control" name="search" [(ngModel)]="searchText" placeholder="Wyszukaj urządzenie">
+</form>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <table class="table"> 
+            <thead>
+                <tr> 
+                    <th style="width: 10%;">Id</th>
+                    <th style="width: 10%;">Nazwa</th>    
+                    <th style="width: 10%;">Moc</th>
+                    <th style="width: 10%;">Cena</th>  
+                    <th style="width: 20%;"></th>
+                   
+                </tr> 
+            </thead>
+            <tbody>
+                <tr *ngFor="let device of devices | filter:searchText">
+                    <td>{{device.id}}</td>
+                    <td>{{device.name}}</td>
+                    <td>{{device.power}}</td>
+                    <td>{{device.price}}</td>
+                    <td>
+                        <button routerLink='/devices/{{device.id}}'class="btn btn-outline-info">Zobacz szczegóły</button>
+                    </td>
+                </tr>
+            </tbody>
+    
+        </table>
+    </div>
+</div>
+
+
