@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace API.Data.Migrations
+namespace API.Migrations
 {
-    public partial class Initial : Migration
+    public partial class correctOrder1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -38,6 +38,32 @@ namespace API.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Companies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderStatuses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderStatuses", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderTypes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -236,6 +262,10 @@ namespace API.Data.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
+                    DeviceId = table.Column<int>(type: "int", nullable: false),
+                    ScheduledDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OrderStatusId = table.Column<int>(type: "int", nullable: false),
+                    OrderTypeId = table.Column<int>(type: "int", nullable: false),
                     AppCompanyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -251,6 +281,24 @@ namespace API.Data.Migrations
                         name: "FK_Orders_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Devices_DeviceId",
+                        column: x => x.DeviceId,
+                        principalTable: "Devices",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_OrderStatuses_OrderStatusId",
+                        column: x => x.OrderStatusId,
+                        principalTable: "OrderStatuses",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_OrderTypes_OrderTypeId",
+                        column: x => x.OrderTypeId,
+                        principalTable: "OrderTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -318,6 +366,21 @@ namespace API.Data.Migrations
                 name: "IX_Orders_CustomerId",
                 table: "Orders",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_DeviceId",
+                table: "Orders",
+                column: "DeviceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_OrderStatusId",
+                table: "Orders",
+                column: "OrderStatusId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_OrderTypeId",
+                table: "Orders",
+                column: "OrderTypeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -338,9 +401,6 @@ namespace API.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Devices");
-
-            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
@@ -351,6 +411,15 @@ namespace API.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "Devices");
+
+            migrationBuilder.DropTable(
+                name: "OrderStatuses");
+
+            migrationBuilder.DropTable(
+                name: "OrderTypes");
 
             migrationBuilder.DropTable(
                 name: "Companies");

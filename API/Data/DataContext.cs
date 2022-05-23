@@ -18,6 +18,8 @@ namespace API.Data
         public DbSet<AppCustomer> Customers { get; set; }
         public DbSet<AppDevice> Devices { get; set; }
         public DbSet<AppOrder> Orders { get; set; }
+        public DbSet<AppOrderStatus> OrderStatuses { get; set; }
+        public DbSet<AppOrderType> OrderTypes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -41,6 +43,21 @@ namespace API.Data
                 .HasOne<AppCustomer>(c => c.AppCustomer)
                 .WithMany(o => o.Orders)
                 .HasForeignKey(c => c.CustomerId);
+
+            builder.Entity<AppOrder>()
+                .HasOne<AppDevice>(c => c.AppDevice)
+                .WithMany(o => o.Orders)
+                .HasForeignKey(c => c.DeviceId);
+
+            builder.Entity<AppOrder>()
+                .HasOne<AppOrderStatus>(c => c.AppOrderStatus)
+                .WithMany(o => o.Orders)
+                .HasForeignKey(c => c.OrderStatusId);
+            
+            builder.Entity<AppOrder>()
+                .HasOne<AppOrderType>(c => c.AppOrderType)
+                .WithMany(o => o.Orders)
+                .HasForeignKey(c => c.OrderTypeId);
         }      
         }
     }

@@ -30,21 +30,6 @@ namespace API.Data
   
         public async Task<IEnumerable<OrderDto>> GetOrdersDtoAsync(int appCompanyId)
         {
-            // List<OrderDto> orders = new List<OrderDto>();
-            //   var result = await _context.Orders
-            //     .Where(x => x.AppCompany.Id == appCompanyId).Include(x => x.AppCustomer)
-            //     //.ProjectTo<AppOrder>(_mapper.ConfigurationProvider)
-            //     .ToListAsync();
-            
-            // int i = 0;
-            // foreach (var item in result)
-            // {
-            //     orders[i].Id = item.Id;
-            //     orders[i].CustomerName = item.AppCustomer.Name;
-            //     i++;
-            // }
-            // return orders;
-
             return await _context.Orders
                 .Where(x => x.AppCompany.Id == appCompanyId)
                 .ProjectTo<OrderDto>(_mapper.ConfigurationProvider)

@@ -50,6 +50,10 @@ namespace API.Controllers
 
             AppOrder order = new AppOrder{
                 CustomerId = orderDto.CustomerId,
+                DeviceId = orderDto.DeviceId,
+                ScheduledDate = orderDto.ScheduledDate,
+                OrderStatusId = orderDto.OrderStatusId,
+                OrderTypeId = orderDto.OrderTypeId,
                 AppCompany = currentUser.AppCompany
             }; 
 

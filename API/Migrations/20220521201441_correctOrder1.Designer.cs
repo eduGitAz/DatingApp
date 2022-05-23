@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace API.Data.Migrations
+namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220508164923_orders")]
-    partial class orders
+    [Migration("20220521201441_correctOrder1")]
+    partial class correctOrder1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -125,19 +125,64 @@ namespace API.Data.Migrations
                     b.Property<int?>("AppCompanyId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AppCustomerId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
+
+                    b.Property<int>("DeviceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ScheduledDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AppCompanyId");
 
-                    b.HasIndex("AppCustomerId");
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("DeviceId");
+
+                    b.HasIndex("OrderStatusId");
+
+                    b.HasIndex("OrderTypeId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("API.Entities.AppOrderStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderStatuses");
+                });
+
+            modelBuilder.Entity("API.Entities.AppOrderType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OrderTypes");
                 });
 
             modelBuilder.Entity("API.Entities.AppRole", b =>
@@ -373,12 +418,38 @@ namespace API.Data.Migrations
                         .HasForeignKey("AppCompanyId");
 
                     b.HasOne("API.Entities.AppCustomer", "AppCustomer")
-                        .WithMany()
-                        .HasForeignKey("AppCustomerId");
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppDevice", "AppDevice")
+                        .WithMany("Orders")
+                        .HasForeignKey("DeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppOrderStatus", "AppOrderStatus")
+                        .WithMany("Orders")
+                        .HasForeignKey("OrderStatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppOrderType", "AppOrderType")
+                        .WithMany("Orders")
+                        .HasForeignKey("OrderTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppCompany");
 
                     b.Navigation("AppCustomer");
+
+                    b.Navigation("AppDevice");
+
+                    b.Navigation("AppOrderStatus");
+
+                    b.Navigation("AppOrderType");
                 });
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
@@ -452,6 +523,26 @@ namespace API.Data.Migrations
                     b.Navigation("Orders");
 
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("API.Entities.AppCustomer", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("API.Entities.AppDevice", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("API.Entities.AppOrderStatus", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("API.Entities.AppOrderType", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("API.Entities.AppRole", b =>
