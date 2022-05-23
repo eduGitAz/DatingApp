@@ -42,6 +42,8 @@ import { DeviceListComponent } from './devices/device-list/device-list.component
 import { DeviceEditComponent } from './devices/device-edit/device-edit.component';
 import { DeviceDetailComponent } from './devices/device-detail/device-detail.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -83,7 +85,9 @@ import { DeviceDetailComponent } from './devices/device-detail/device-detail.com
     BrowserAnimationsModule,
     FormsModule,
     SharedModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

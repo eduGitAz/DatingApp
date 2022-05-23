@@ -4,7 +4,8 @@ import { Order } from 'src/app/_models/order';
 import { CustomersService } from 'src/app/_services/customers.service';
 import { OrdersService } from 'src/app/_services/orders.service';
 import { map, catchError, filter } from 'rxjs/operators'
-import { MatSliderModule } from '@angular/material/slider';
+
+
 
 @Component({
   selector: 'app-order-list',
@@ -13,7 +14,7 @@ import { MatSliderModule } from '@angular/material/slider';
 })
 export class OrderListComponent implements OnInit {
   orders: Partial<Order[]>;
-  searchOrder;
+  public searchOrder: String;
   orderStatus: string;
   constructor(private orderService: OrdersService) { 
  
@@ -44,12 +45,5 @@ export class OrderListComponent implements OnInit {
       this.orders = orders.filter(order => order.appOrderStatus.name === 'ZAMKNIĘTE');
     })
   }
-
-
-
-
-
-
-
 
 }
