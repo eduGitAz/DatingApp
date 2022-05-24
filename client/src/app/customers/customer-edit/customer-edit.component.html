@@ -2,17 +2,17 @@
 
 <div class="col-4" *ngIf="customer">
     <form #editForm="ngForm" (ngSubmit)="updateCustomer()">
-        <h4>Imię</h4>
+        <h6>Imię</h6>
         <textarea class="form-control" [(ngModel)]="customer.name" name="name" rows="1"></textarea>
-        <h4 class="mt-2">Nazwisko</h4>
+        <h6 class="mt-2">Nazwisko</h6>
         <textarea class="form-control" [(ngModel)]="customer.surname" name="surname" rows="1"></textarea>
-        <h4 class="mt-2">Ulica i numer domu</h4> 
+        <h6 class="mt-2">Ulica i numer domu</h6> 
         <textarea class="form-control" [(ngModel)]="customer.streetNumber" name="streetNumber" rows="1"></textarea>
-        <h4 class="mt-2">Miasto</h4>
+        <h6 class="mt-2">Miasto</h6>
         <textarea class="form-control" [(ngModel)]="customer.city" name="city" rows="1"></textarea>
-        <h4 class="mt-2">Kod pocztowy</h4> 
+        <h6 class="mt-2">Kod pocztowy</h6> 
         <textarea class="form-control" [(ngModel)]="customer.postCode" name="postCode" rows="1"></textarea>
-        <h4 class="mt-2">Numer telefonu</h4>
+        <h6 class="mt-2">Numer telefonu</h6>
         <textarea class="form-control" [(ngModel)]="customer.phoneNumber" name="phoneNumber" rows="1"></textarea>
         <button [disabled]="!editForm.dirty" class="btn btn-outline-success mt-2">Zapisz zmiany</button>
     </form>

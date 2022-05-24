@@ -1,8 +1,58 @@
+<div id="container">
 <div class="row" *ngIf="order">    
-    <div class="col-4">
-        <div class="card">
+ <div class="col-8">
+    <div class="card">
         <div class="card-body">
-            <h5 class="card-title">{{order.id}}</h5>
+            <h5 class="card-title">Zamówienie numer: {{order.id}}</h5>
+
+    
+        <div class="customer"> 
+            <b>Dane klienta:</b>
+            <p>
+                {{order.appCustomer.name}} {{order.appCustomer.surname}} <br>
+                Tel: {{order.appCustomer.phoneNumber}} <br>
+                {{order.appCustomer.streetNumber}}  <br>
+                {{order.appCustomer.postCode}}, {{order.appCustomer.city}} 
+            </p>
+        </div>
+  
+        <div class="scheduledTime"> 
+            <strong>Planowana data wykonania:</strong>
+            <p>
+                {{order.scheduledDate | date:'shortDate'}} 
+            </p> 
+        </div>
+    
+       
+        <div class="device"> 
+            <strong>Urządzenie</strong>
+            <p>
+                {{order.appDevice.name}} {{order.appDevice.power}} <br>
+                Kolor: {{order.appDevice.color}}<br>
+                Cena:  {{order.appDevice.price}}
+            </p> 
+        </div>
+
+        <div class="orderStatus"> 
+            <strong>Status zamówienia:</strong>
+            <p>
+                {{order.appOrderStatus.name}} 
+            </p> 
+            <strong>Typ Zamówienia:</strong>
+            <p>
+                {{order.appOrderType.name}} 
+            </p> 
+        </div>
+    
+   
+    </div>
+ </div>
+ 
+
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Raport wykonania</h5>
         <div>
             <strong>Id:</strong>
             <p>{{order.id}}</p>
@@ -14,11 +64,12 @@
         </div>
         <div class="card-footer">
          <div class="btn-group d-flex">
-        <button routerLink='/order/edit/{{order.id}}'class="btn btn-outline-warning">Edytuj</button>
+        <button routerLink='/order/edit/{{order.id}}'class="btn btn-outline-warning btn-block">Edytuj</button>
        
-        <button (click)="deleteOrder()" class="btn btn-outline-danger">Usuń</button>
+        <button (click)="deleteOrder()" class="btn btn-outline-danger btn-block">Usuń</button>
          </div> 
         </div>
     </div>
     </div>
+</div>
 </div>

@@ -38,9 +38,8 @@
                 <tr *ngFor="let order of orders | filter: searchOrder">
                     <td>{{order.id}}</td>
                     <td>{{order.appCustomer.name}} {{order.appCustomer.surname}}</td>
-                    <td>{{order.appOrderType.name}}</td>
                     <td>{{order.appDevice.name}}</td>
-                    
+                    <td>{{order.appOrderType.name}}</td>
                     <td>
                         <ng-container *ngIf="order.appOrderStatus.name === 'NOWE'">
                             <span class="badge badge-danger"> {{order.appOrderStatus.name}}</span>
