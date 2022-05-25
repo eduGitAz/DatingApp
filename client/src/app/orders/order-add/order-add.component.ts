@@ -14,7 +14,7 @@ export class OrderAddComponent implements OnInit {
   customers: Customer[];
   constructor(private orderService: OrdersService, private customerService: CustomersService, private toastr: ToastrService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.getCustomers();
   }
 

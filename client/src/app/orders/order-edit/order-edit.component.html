@@ -1,15 +1,62 @@
-<h2 class="mt-2 mb-4 ml-2">Edycja zlecenia</h2>
 
-<div class="col-4" *ngIf="order">
+<div id="container">
+<div class="row">
+<div class="col-9" *ngIf="order">
     <form #editForm="ngForm" (ngSubmit)="updateOrder()">
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Wybierz Klienta</label> 
-          <select class="form-control" [(ngModel)]="order.CustomerId" [ngModelOptions]="{standalone: true}">
+  
+        <div class="card">
+        <div class="card-body">
+          <h5 class="mt-2 mb-4 ml-2">Edycja zlecenia nr: {{order.id}}</h5>
+        <div class="customer">
+          <label for="exampleFormControlSelect1">Klient:</label> 
+          <select class="form-control" [(ngModel)]="order.customerId" [ngModelOptions]="{standalone: true}">
             <option *ngFor="let customer of customers" [ngValue]="customer.id">
                ID:{{customer.id}} {{customer.name}} {{customer.surname}} 
             </option>
           </select>
         </div>
+
+        <div class="orderType">
+          <label for="exampleFormControlSelect1">Typ zamówienia:</label> 
+          <select class="form-control" [(ngModel)]="order.orderTypeId" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let orderType of orderTypes" [ngValue]="orderType.id">
+              {{orderType.name}}
+            </option>
+          </select>
+        </div>
+
+        <div class="device">
+          <label for="exampleFormControlSelect1">Urządzenie:</label> 
+          <select class="form-control" [(ngModel)]="order.deviceId" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let device of devices" [ngValue]="device.id">
+               ID:{{device.id}} {{device.name}} {{device.power}} 
+            </option>
+          </select>
+        </div>
+
+        <div class="orderStatus">
+          <label for="exampleFormControlSelect1">Status zamówienia:</label> 
+          <select class="form-control" [(ngModel)]="order.orderStatusId" [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let orderStatus of orderStatuses" [ngValue]="orderStatus.id">
+               {{orderStatus.name}}
+            </option>
+          </select>
+        </div>
+        
+        <div class="scheduledDate">
+          <label for="exampleFormControlSelect1">Planowana data wykonania:</label> 
+          <input [type]='"date"' class="form-control"  [(ngModel)]="order.scheduledDate" name="scheduledDate" rows="1"/>
+        </div>
+
+
+
+ 
+
+   
+      </div>
+    </div>
         <button class="btn btn-outline-success mt-2">Zapisz zmiany</button>
     </form>
+  </div>
 </div>  
+</div>

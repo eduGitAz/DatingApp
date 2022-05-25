@@ -20,6 +20,8 @@ namespace API.Helpers
             CreateMap<OrderUpdateDto, AppOrder>();
             CreateMap<CompanyUpdateDto, AppCompany>();
             CreateMap<DeviceUpdateDto, AppDevice>();
+            CreateMap<AppOrderStatus, OrderStatusDto>();
+            CreateMap<AppOrderType, OrderTypeDto>();
         }
     }
 }

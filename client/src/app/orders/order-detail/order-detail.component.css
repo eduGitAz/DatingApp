@@ -1,28 +1,25 @@
-
-
 .btn{
     margin: 3px;
 }
-
-
-
 .customer{
-    
     float:left;
     width: 300px;
 }
-.scheduledTime{
-    margin-right: 20px;
-    
-    float:left
-}
+
 .device{
     clear: both;
     float: left;
     width: 300px;
 }
+
 .orderStatus{
-    margin-right: 20px;
-    float: left;
+    margin-right: 20px; 
     
 }
+
+.scheduledTime{
+    margin-right: 20px;
+    clear: both;
+}
+
+

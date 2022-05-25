@@ -19,6 +19,8 @@ namespace API.Extensions
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IDeviceRepository, DeviceRepository>();
+            services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
+            services.AddScoped<IOrderTypeRepository, OrderTypeRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
@@ -29,7 +31,7 @@ namespace API.Extensions
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
 );
             
-            return services;
+            return services; 
          }
     }
 }

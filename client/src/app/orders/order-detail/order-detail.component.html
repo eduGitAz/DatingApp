@@ -1,11 +1,10 @@
 <div id="container">
 <div class="row" *ngIf="order">    
- <div class="col-8">
+ <div class="col-9">
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Zamówienie numer: {{order.id}}</h5>
 
-    
         <div class="customer"> 
             <b>Dane klienta:</b>
             <p>
@@ -15,15 +14,14 @@
                 {{order.appCustomer.postCode}}, {{order.appCustomer.city}} 
             </p>
         </div>
-  
-        <div class="scheduledTime"> 
-            <strong>Planowana data wykonania:</strong>
+
+        <div class="orderType">
+            <strong>Typ Zamówienia:</strong>
             <p>
-                {{order.scheduledDate | date:'shortDate'}} 
+                {{order.appOrderType.name}} 
             </p> 
         </div>
-    
-       
+
         <div class="device"> 
             <strong>Urządzenie</strong>
             <p>
@@ -38,18 +36,19 @@
             <p>
                 {{order.appOrderStatus.name}} 
             </p> 
-            <strong>Typ Zamówienia:</strong>
+        </div>
+     
+
+        <div class="scheduledTime"> 
+            <strong>Planowana data wykonania:</strong>
             <p>
-                {{order.appOrderType.name}} 
+                {{order.scheduledDate | date:'dd/MM/yyyy'}} 
             </p> 
         </div>
     
-   
     </div>
  </div>
  
-
-
     <div class="card">
         <div class="card-body">
             <h5 class="card-title">Raport wykonania</h5>
