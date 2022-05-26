@@ -21,6 +21,8 @@ namespace API.Extensions
             services.AddScoped<IDeviceRepository, DeviceRepository>();
             services.AddScoped<IOrderStatusRepository, OrderStatusRepository>();
             services.AddScoped<IOrderTypeRepository, OrderTypeRepository>();
+            services.AddScoped<IUseOfRefrigernatRepository, UseOfRefrigernatRepository>();
+            services.AddScoped<IRefrigerantRepository, RefrigerantRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {

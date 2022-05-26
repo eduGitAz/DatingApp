@@ -20,11 +20,13 @@ namespace API.Data
         public DbSet<AppOrder> Orders { get; set; }
         public DbSet<AppOrderStatus> OrderStatuses { get; set; }
         public DbSet<AppOrderType> OrderTypes { get; set; }
+        public DbSet<AppUseOfRefrigernat> UseOfRefrigernats { get; set; }
+        public DbSet<AppRefrigerant> Refrigerants { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
+            
             builder.Entity<AppUser>()
                 .HasMany(ur => ur.UserRoles)
                 .WithOne(u => u.User)
@@ -47,7 +49,9 @@ namespace API.Data
             builder.Entity<AppOrder>()
                 .HasOne<AppDevice>(c => c.AppDevice)
                 .WithMany(o => o.Orders)
-                .HasForeignKey(c => c.DeviceId);
+                .HasForeignKey(c => c.DeviceId)
+                .OnDelete(DeleteBehavior.Cascade);
+              
 
             builder.Entity<AppOrder>()
                 .HasOne<AppOrderStatus>(c => c.AppOrderStatus)
@@ -58,6 +62,16 @@ namespace API.Data
                 .HasOne<AppOrderType>(c => c.AppOrderType)
                 .WithMany(o => o.Orders)
                 .HasForeignKey(c => c.OrderTypeId);
+            
+            builder.Entity<AppOrder>()
+                .HasOne<AppUseOfRefrigernat>(c => c.AppUseOfRefrigernat)
+                .WithMany(o => o.Orders)
+                .HasForeignKey(c => c.UseOfRefrigernatId);
+            
+            builder.Entity<AppOrder>()
+                .HasOne<AppRefrigerant>(c => c.AppRefrigerant)
+                .WithMany(o => o.Orders)
+                .HasForeignKey(c => c.RefrigerantId);
         }      
         }
     }

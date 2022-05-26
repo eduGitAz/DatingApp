@@ -22,6 +22,8 @@ namespace API.Helpers
             CreateMap<DeviceUpdateDto, AppDevice>();
             CreateMap<AppOrderStatus, OrderStatusDto>();
             CreateMap<AppOrderType, OrderTypeDto>();
+            CreateMap<AppUseOfRefrigernat, UseOfRefrigernatDto>();
+            CreateMap<AppRefrigerant, RefrigerantDto>();
         }
     }
 }

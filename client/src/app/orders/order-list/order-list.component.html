@@ -41,13 +41,13 @@
                     <td>{{order.appDevice.name}}</td>
                     <td>{{order.appOrderType.name}}</td>
                     <td>
-                        <ng-container *ngIf="order.appOrderStatus.name === 'NOWE'">
+                        <ng-container *ngIf="order.appOrderStatus.name === 'Nowe'">
                             <span class="badge badge-danger"> {{order.appOrderStatus.name}}</span>
                         </ng-container>
-                        <ng-container *ngIf="order.appOrderStatus.name === 'REALIZOWANE'">
+                        <ng-container *ngIf="order.appOrderStatus.name === 'Realizowane'">
                             <span class="badge badge-warning"> {{order.appOrderStatus.name}}</span>
                         </ng-container>
-                        <ng-container *ngIf="order.appOrderStatus.name === 'ZAMKNIĘTE'">
+                        <ng-container *ngIf="order.appOrderStatus.name === 'Zamknięte'">
                             <span class="badge badge-success"> {{order.appOrderStatus.name}}</span>
                         </ng-container>
                      </td>

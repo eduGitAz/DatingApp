@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace API.Migrations
 {
-    public partial class correctOrder1 : Migration
+    public partial class completeOrder1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,6 +64,33 @@ namespace API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OrderTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Refrigerants",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdrClass = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Refrigerants", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UseOfRefrigernats",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UseOfRefrigernats", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -266,6 +293,9 @@ namespace API.Migrations
                     ScheduledDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OrderStatusId = table.Column<int>(type: "int", nullable: false),
                     OrderTypeId = table.Column<int>(type: "int", nullable: false),
+                    UseOfRefrigernatId = table.Column<int>(type: "int", nullable: true),
+                    RefrigerantId = table.Column<int>(type: "int", nullable: true),
+                    Weight = table.Column<decimal>(type: "decimal(18,2)", nullable: true),
                     AppCompanyId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -301,6 +331,18 @@ namespace API.Migrations
                         principalTable: "OrderTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Refrigerants_RefrigerantId",
+                        column: x => x.RefrigerantId,
+                        principalTable: "Refrigerants",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Orders_UseOfRefrigernats_UseOfRefrigernatId",
+                        column: x => x.UseOfRefrigernatId,
+                        principalTable: "UseOfRefrigernats",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -381,6 +423,16 @@ namespace API.Migrations
                 name: "IX_Orders_OrderTypeId",
                 table: "Orders",
                 column: "OrderTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_RefrigerantId",
+                table: "Orders",
+                column: "RefrigerantId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_UseOfRefrigernatId",
+                table: "Orders",
+                column: "UseOfRefrigernatId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -420,6 +472,12 @@ namespace API.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderTypes");
+
+            migrationBuilder.DropTable(
+                name: "Refrigerants");
+
+            migrationBuilder.DropTable(
+                name: "UseOfRefrigernats");
 
             migrationBuilder.DropTable(
                 name: "Companies");

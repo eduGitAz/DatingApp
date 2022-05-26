@@ -54,6 +54,9 @@ namespace API.Controllers
                 ScheduledDate = orderDto.ScheduledDate,
                 OrderStatusId = orderDto.OrderStatusId,
                 OrderTypeId = orderDto.OrderTypeId,
+                UseOfRefrigernatId = orderDto.UseOfRefrigernatId,
+                RefrigerantId = orderDto.RefrigerantId,
+                Weight = orderDto.Weight,
                 AppCompany = currentUser.AppCompany
             }; 
 

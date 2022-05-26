@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220521201441_correctOrder1")]
-    partial class correctOrder1
+    [Migration("20220526173647_completeOrder1")]
+    partial class completeOrder1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -137,8 +137,17 @@ namespace API.Migrations
                     b.Property<int>("OrderTypeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("RefrigerantId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("ScheduledDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int?>("UseOfRefrigernatId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("Weight")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -151,6 +160,10 @@ namespace API.Migrations
                     b.HasIndex("OrderStatusId");
 
                     b.HasIndex("OrderTypeId");
+
+                    b.HasIndex("RefrigerantId");
+
+                    b.HasIndex("UseOfRefrigernatId");
 
                     b.ToTable("Orders");
                 });
@@ -185,6 +198,24 @@ namespace API.Migrations
                     b.ToTable("OrderTypes");
                 });
 
+            modelBuilder.Entity("API.Entities.AppRefrigerant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AdrClass")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Refrigerants");
+                });
+
             modelBuilder.Entity("API.Entities.AppRole", b =>
                 {
                     b.Property<int>("Id")
@@ -212,6 +243,21 @@ namespace API.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("API.Entities.AppUseOfRefrigernat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UseOfRefrigernats");
                 });
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
@@ -441,6 +487,14 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("API.Entities.AppRefrigerant", "AppRefrigerant")
+                        .WithMany("Orders")
+                        .HasForeignKey("RefrigerantId");
+
+                    b.HasOne("API.Entities.AppUseOfRefrigernat", "AppUseOfRefrigernat")
+                        .WithMany("Orders")
+                        .HasForeignKey("UseOfRefrigernatId");
+
                     b.Navigation("AppCompany");
 
                     b.Navigation("AppCustomer");
@@ -450,6 +504,10 @@ namespace API.Migrations
                     b.Navigation("AppOrderStatus");
 
                     b.Navigation("AppOrderType");
+
+                    b.Navigation("AppRefrigerant");
+
+                    b.Navigation("AppUseOfRefrigernat");
                 });
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
@@ -545,9 +603,19 @@ namespace API.Migrations
                     b.Navigation("Orders");
                 });
 
+            modelBuilder.Entity("API.Entities.AppRefrigerant", b =>
+                {
+                    b.Navigation("Orders");
+                });
+
             modelBuilder.Entity("API.Entities.AppRole", b =>
                 {
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("API.Entities.AppUseOfRefrigernat", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
