@@ -22,3 +22,16 @@
 .form-control{
     width:400px;
 }
+
+.refrigerant{
+    float:left;
+    margin-right: 50px;
+    margin-top: 20px;
+}
+.weight{
+    margin-top: 20px;
+}
+
+#use{
+    width: 850px;
+}

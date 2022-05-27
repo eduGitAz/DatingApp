@@ -23,7 +23,7 @@
         </div>
 
         <div class="device"> 
-            <strong>Urządzenie</strong>
+            <strong>Urządzenie:</strong>
             <p>
                 {{order.appDevice.name}} {{order.appDevice.power}} <br>
                 Kolor: {{order.appDevice.color}}<br>
@@ -53,12 +53,16 @@
         <div class="card-body">
             <h5 class="card-title">Raport wykonania</h5>
         <div>
-            <strong>Id:</strong>
-            <p>{{order.id}}</p>
+            <strong>Rodzaj wykorzystania:</strong>
+            <p>{{order?.appUseOfRefrigernat?.name}}</p>
         </div>
         <div> 
-            <strong>Imię i nazwisko klienta:</strong>
-            <p>{{order.appCustomer.name}} {{order.appCustomer.surname}}</p>   
+            <strong>Czynnik chłodniczy:</strong>
+            <p>{{order?.appRefrigerant?.name}}</p>   
+        </div>
+        <div> 
+            <strong>Waga:</strong>
+            <p>{{order?.weight}}</p>   
         </div>
         </div>
         <div class="card-footer">

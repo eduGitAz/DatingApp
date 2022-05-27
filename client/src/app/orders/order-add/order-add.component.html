@@ -1,16 +1,89 @@
-<h2 class="mt-2 mb-4 ml-2">Dodawanie zlecenia</h2>
-<div class="col-4">
-<form #addForm="ngForm" (ngSubmit)="addOrder()" autocomplete="off" >
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">Wybierz Klienta</label> 
-        <select class="form-control" [(ngModel)]="model.CustomerId" [ngModelOptions]="{standalone: true}">
-          <option *ngFor="let customer of customers" [ngValue]="customer.id">
-             ID:{{customer.id}} {{customer.name}} {{customer.surname}} 
-          </option>
-        </select>
+
+<div id="container">
+  <div class="row">
+  <div class="col-9">
+      <form #editForm="ngForm" (ngSubmit)="addOrder()">
+    
+          <div class="card">
+          <div class="card-body">
+            <h5 class="mt-2 mb-4 ml-2">Dodawanie zlecenia</h5>
+          <div class="customer">
+            <label for="exampleFormControlSelect1">Klient:</label> 
+            <select class="form-control" [(ngModel)]="model.customerId" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let customer of customers" [ngValue]="customer.id">
+                 ID:{{customer.id}} {{customer.name}} {{customer.surname}} 
+              </option>
+            </select>
+          </div>
+  
+          <div class="orderType">
+            <label for="exampleFormControlSelect1">Typ zamówienia:</label> 
+            <select class="form-control" [(ngModel)]="model.orderTypeId" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let orderType of orderTypes" [ngValue]="orderType.id">
+                {{orderType.name}}
+              </option>
+            </select>
+          </div>
+  
+          <div class="device">
+            <label for="exampleFormControlSelect1">Urządzenie:</label> 
+            <select class="form-control" [(ngModel)]="model.deviceId" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let device of devices" [ngValue]="device.id">
+                 ID:{{device.id}} {{device.name}} {{device.power}} 
+              </option>
+            </select>
+          </div>
+  
+          <div class="orderStatus">
+            <label for="exampleFormControlSelect1">Status zamówienia:</label> 
+            <select class="form-control" [(ngModel)]="model.orderStatusId" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let orderStatus of orderStatuses" [ngValue]="orderStatus.id">
+                 {{orderStatus.name}}
+              </option>
+            </select>
+          </div>
+          
+          <div class="scheduledDate">
+            <label for="exampleFormControlSelect1">Planowana data wykonania:</label> 
+            <input [type]='"date"' class="form-control"  [(ngModel)]="model.scheduledDate" name="scheduledDate" rows="1"/>
+          </div>
+        </div>
       </div>
-    <div class="form-group">
-        <button class="btn btn-outline-success mr-2"  type="submit">Dodaj</button>
+  
+        <div class="card">
+          <div class="card-body">
+  
+            <div class="useOfRefrigernat">
+              <label for="exampleFormControlSelect1">Rodzaj wykorzystania:</label> 
+              <select id="use" class="form-control" [(ngModel)]="model.useOfRefrigernatId" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let useOfRefrigerant of useOfRefrigerants" [ngValue]="useOfRefrigerant.id">
+                  {{useOfRefrigerant.name}}
+                </option>
+              </select>
+            </div>
+  
+            <div class="refrigerant">
+              <label for="exampleFormControlSelect1">Czynnik chłodniczy:</label> 
+              <select class="form-control" [(ngModel)]="model.refrigerantId" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let refrigerant of refrigerants" [ngValue]="refrigerant.id">
+                  {{refrigerant.name}}
+                </option>
+              </select>
+            </div>
+            <div class="weight">
+              <label for="exampleFormControlSelect1">Waga (kg):</label> 
+              <textarea class="form-control" [(ngModel)]="model.weight" name="weight" rows="1"></textarea>
+            </div>
+  
+          </div>
+          <div class="card-footer">
+            <div class="btn-group d-flex">
+             <button class="btn btn-outline-success mt-2">Dodaj</button>
+            </div>
+          </div>
+        </div>
+    
+      </form>
     </div>
-</form>
-</div>   
+  </div>  
+  </div>

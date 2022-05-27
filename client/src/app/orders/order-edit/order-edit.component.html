@@ -47,15 +47,42 @@
           <label for="exampleFormControlSelect1">Planowana data wykonania:</label> 
           <input [type]='"date"' class="form-control"  [(ngModel)]="order.scheduledDate" name="scheduledDate" rows="1"/>
         </div>
-
-
-
- 
-
-   
       </div>
     </div>
-        <button class="btn btn-outline-success mt-2">Zapisz zmiany</button>
+
+      <div class="card">
+        <div class="card-body">
+
+          <div class="useOfRefrigernat">
+            <label for="exampleFormControlSelect1">Rodzaj wykorzystania:</label> 
+            <select id="use" class="form-control" [(ngModel)]="order.useOfRefrigernatId" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let useOfRefrigerant of useOfRefrigerants" [ngValue]="useOfRefrigerant.id">
+                {{useOfRefrigerant.name}}
+              </option>
+            </select>
+          </div>
+
+          <div class="refrigerant">
+            <label for="exampleFormControlSelect1">Czynnik chłodniczy:</label> 
+            <select class="form-control" [(ngModel)]="order.refrigerantId" [ngModelOptions]="{standalone: true}">
+              <option *ngFor="let refrigerant of refrigerants" [ngValue]="refrigerant.id">
+                {{refrigerant.name}}
+              </option>
+            </select>
+          </div>
+          <div class="weight">
+            <label for="exampleFormControlSelect1">Waga (kg):</label> 
+            <textarea class="form-control" [(ngModel)]="order.weight" name="weight" rows="1"></textarea>
+          </div>
+
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+           <button class="btn btn-outline-success mt-2">Zapisz zmiany</button>
+          </div>
+        </div>
+      </div>
+  
     </form>
   </div>
 </div>  

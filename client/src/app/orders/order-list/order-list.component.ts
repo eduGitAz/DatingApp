@@ -32,17 +32,17 @@ export class OrderListComponent implements OnInit {
 
   getOnlyNewOrders() {
     this.orderService.getOrders().subscribe(orders => {
-      this.orders = orders.filter(order => order.appOrderStatus.name === 'NOWE');
+      this.orders = orders.filter(order => order.appOrderStatus.name === 'Nowe');
     })
   }
   getOnlyRealizedOrders() {
     this.orderService.getOrders().subscribe(orders => {
-      this.orders = orders.filter(order => order.appOrderStatus.name === 'REALIZOWANE');
+      this.orders = orders.filter(order => order.appOrderStatus.name === 'Realizowane');
     })
   }
   getOnlyFinishOrders() {
     this.orderService.getOrders().subscribe(orders => {
-      this.orders = orders.filter(order => order.appOrderStatus.name === 'ZAMKNIĘTE');
+      this.orders = orders.filter(order => order.appOrderStatus.name === 'Zamknięte');
     })
   }
 

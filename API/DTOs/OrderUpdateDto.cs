@@ -9,5 +9,8 @@ namespace API.DTOs
         public DateTime ScheduledDate {get; set;}
         public int OrderStatusId {get; set;}
         public int OrderTypeId {get; set;}
+        public int? UseOfRefrigernatId {get; set;}
+        public int? RefrigerantId {get; set;}
+        public decimal? Weight {get; set;}
     }
 }

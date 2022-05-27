@@ -3,7 +3,7 @@ import { Device } from "./device";
 import { OrderStatus } from "./orderStatus";
 import { OrderType } from "./orderType";
 import { Refrigerant } from "./refrigerant";
-import { useOfRefrigernat } from "./useOfRefrigernat";
+import { UseOfRefrigernat } from "./useOfRefrigernat";
 
 export interface Order {
     id: number;
@@ -16,9 +16,9 @@ export interface Order {
     appOrderStatus: OrderStatus;
     orderTypeId: number;  
     appOrderType: OrderType;
-    useOfRefrigernatId: number;
-    useOfRefrigernat: useOfRefrigernat;
-    refrigerantId: number;
-    refrigerant: Refrigerant;
-    weight: number;
+    useOfRefrigernatId?: number;
+    appUseOfRefrigernat?: UseOfRefrigernat;
+    refrigerantId?: number;
+    appRefrigerant?: Refrigerant;
+    weight?: number;
 } 
