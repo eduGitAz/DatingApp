@@ -7,7 +7,6 @@ namespace API.Interfaces
 {
     public interface IOrderRepository
     {
-
         Task <OrderDto> GetOrderDtoByIdAsync(int id);
         Task <IEnumerable<OrderDto>> GetOrdersDtoAsync(int appCompanyId);
         Task<AppOrder> GetOrderByIdAsync(int id);
@@ -16,6 +15,5 @@ namespace API.Interfaces
         Task<bool> SaveAllAsync();
         Task <AppOrder> Add (AppOrder order);
         Task <AppOrder> Delete (int id);
-          
     }
 }

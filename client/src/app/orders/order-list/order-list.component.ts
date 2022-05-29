@@ -15,7 +15,6 @@ import { map, catchError, filter } from 'rxjs/operators'
 export class OrderListComponent implements OnInit {
   orders: Partial<Order[]>;
   public searchOrder: String;
-  orderStatus: string;
   constructor(private orderService: OrdersService) { 
  
   }

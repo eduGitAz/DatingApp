@@ -57,7 +57,7 @@
               <label for="exampleFormControlSelect1">Rodzaj wykorzystania:</label> 
               <select id="use" class="form-control" [(ngModel)]="model.useOfRefrigernatId" [ngModelOptions]="{standalone: true}">
                 <option *ngFor="let useOfRefrigerant of useOfRefrigerants" [ngValue]="useOfRefrigerant.id">
-                  {{useOfRefrigerant.name}}
+                  {{useOfRefrigerant.nameUse}}
                 </option>
               </select>
             </div>

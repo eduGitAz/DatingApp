@@ -24,6 +24,7 @@ namespace API.Helpers
             CreateMap<AppOrderType, OrderTypeDto>();
             CreateMap<AppUseOfRefrigernat, UseOfRefrigernatDto>();
             CreateMap<AppRefrigerant, RefrigerantDto>();
+            CreateMap<AppOrder, AppComparision>();
         }
     }
 }

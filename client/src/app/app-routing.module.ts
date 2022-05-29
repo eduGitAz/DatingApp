@@ -28,6 +28,7 @@ import { DeviceListComponent } from './devices/device-list/device-list.component
 import { DeviceDetailComponent } from './devices/device-detail/device-detail.component';
 import { DeviceEditComponent } from './devices/device-edit/device-edit.component';
 import { DeviceAddComponent } from './devices/device-add/device-add.component';
+import { ComparisionComponent } from './comparision/comparision.component';
 
 
 const routes: Routes = [
@@ -64,6 +65,8 @@ const routes: Routes = [
       {path: 'devices/:id', component: DeviceDetailComponent},
       {path: 'device/edit/:id', component: DeviceEditComponent},
       {path: 'device/add', component: DeviceAddComponent},
+
+      {path: 'comparision', component: ComparisionComponent},
       
     ]
   },

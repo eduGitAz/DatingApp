@@ -23,6 +23,7 @@ namespace API.Extensions
             services.AddScoped<IOrderTypeRepository, OrderTypeRepository>();
             services.AddScoped<IUseOfRefrigernatRepository, UseOfRefrigernatRepository>();
             services.AddScoped<IRefrigerantRepository, RefrigerantRepository>();
+            services.AddScoped<IComparisionRepository, ComparisionRepository>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             services.AddDbContext<DataContext>(options =>
             {

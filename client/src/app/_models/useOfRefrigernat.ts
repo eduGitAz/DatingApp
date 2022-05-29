@@ -1,4 +1,4 @@
 export interface UseOfRefrigernat {
     id: number;
-    name: string;
+    nameUse: string;
 }
