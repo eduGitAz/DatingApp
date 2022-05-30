@@ -1,1 +1,73 @@
-<h5>Strona główna</h5>
+<h4 class="mt-2 mb-2">Strona główna</h4>
+<div class="row" *ngIf="company">    
+    <div class="col-4">
+        <div class="card">
+        <div class="card-body">
+            <h6 class="card-title">{{company.name}}</h6>
+        <div> 
+            <strong>Nazwa firmy:</strong>
+            <p>{{company.name}}</p>   
+        </div>
+        <div> 
+            <strong>Numer F-gaz:</strong>
+            <p>{{company.fgazNumber}}</p>   
+        </div>
+        <div> 
+            <strong>Numer NIP:</strong> 
+            <p>{{company.taxNumber}}</p>   
+        </div>
+        <div> 
+            <strong>Ulica i numer domu:</strong>
+            <p>{{company.streetNumber}}</p>   
+        </div>
+        <div> 
+            <strong>Miasto i kod pocztowy:</strong>
+            <p>{{company.city}} {{company.postCode}}</p>        
+        </div>
+        </div>
+    </div>
+    </div>
+    <div class="col-8">
+        <div id="customers">
+        <div class="card">
+            <div class="card-body">
+                <div class="sumImage">
+                    <img [src]="'assets/img/customers.png'" [alt]='countCustomer' />
+                </div>
+                <div class="sumText">
+                <p><b>Liczba Klientów:</b><br>{{amountCustomer}}</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div id="orders">
+        <div class="card">  
+            <div class="card-body">
+                <div class="sumImage">
+                    <img [src]="'assets/img/orders.png'" [alt]="countOrders" />
+                </div>
+                <div class="sumText">
+                <p><b>Liczba zamówień</b><br>{{amountOrders}}</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+        <div id="devices">
+        <div class="card">
+            
+            <div class="card-body">
+                <div class="sumImage">
+                    <img [src]="'assets/img/devices.png'" [alt]="countOrders" />
+                </div>
+                <div class="sumText">
+                <p><b>Liczba urządzeń</b><br>{{amountDevices}}</p>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </div>
+</div>

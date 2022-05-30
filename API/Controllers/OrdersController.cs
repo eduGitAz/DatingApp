@@ -33,6 +33,23 @@ namespace API.Controllers
             return Ok(orders);
         } 
 
+           
+        [HttpGet("count")]
+        public async Task<ActionResult<IEnumerable<OrderDto>>> CountOrders()
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            
+            int id = currentUser.AppCompany.Id;
+            var orders = await _orderRepository.GetOrdersDtoAsync(id);
+             int i = 0;
+            foreach (var item in orders)
+            {
+                i++;
+            }
+            return Ok(i);
+        } 
+
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderDto>> GetOrder(int id)
         {

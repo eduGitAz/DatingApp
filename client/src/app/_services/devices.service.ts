@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Device } from '../_models/device';
 
@@ -16,6 +17,9 @@ export class DevicesService {
   }
   getDevice(id: string){
     return this.http.get<Device>(this.baseUrl + 'devices/' + id);
+  }
+  countDevices(){
+    return this.http.get<Subscription>(this.baseUrl + 'devices/count');
   }
 
   updateDevice(id: Number, device: Device){

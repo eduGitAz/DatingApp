@@ -33,6 +33,23 @@ namespace API.Controllers
 
             return Ok(devices);
         } 
+
+        [HttpGet("count")]
+        public async Task<ActionResult<IEnumerable<DeviceDto>>> CountDevices()
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            
+            int id = currentUser.AppCompany.Id;
+            var devices = await _deviceRepository.GetDevicesDtoAsync(id);
+               int i = 0;
+            foreach (var item in devices)
+            {
+                i++;
+            }
+
+            return Ok(i);
+        } 
    
         [HttpGet("{id}")]
         public async Task<ActionResult<DeviceDto>> GetDevice(int id)

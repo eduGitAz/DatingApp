@@ -38,6 +38,24 @@ namespace API.Controllers
 
             return Ok(customers);
         } 
+        
+        [HttpGet("count")]
+        
+        public async Task<ActionResult<IEnumerable<int>>> CountCustomers()
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            
+            int id = currentUser.AppCompany.Id;
+            var customers = await _customerRepository.GetCustomersDtoAsync(id);
+            int i = 0;
+            foreach (var item in customers)
+            {
+                i++;
+            }
+
+            return Ok(i);
+        } 
    
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerDto>> GetCustomer(int id)

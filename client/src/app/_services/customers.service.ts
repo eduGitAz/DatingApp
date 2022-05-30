@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Customer } from '../_models/customer';
 
@@ -19,6 +20,10 @@ export class CustomersService {
     return this.http.get<Customer>(this.baseUrl + 'customers/' + id);
   }
 
+  countCustomers(){
+    return this.http.get<Subscription>(this.baseUrl + 'customers/count');
+  }
+
   updateCustomer(id: Number, customer: Customer){
     return this.http.put(this.baseUrl + 'customers/'+ id, customer)
   }
@@ -28,6 +33,7 @@ export class CustomersService {
   deleteCustomer(id: Number){
     return this.http.delete(this.baseUrl + "customers/delete/" + id);      
   }
+
   
 }
  

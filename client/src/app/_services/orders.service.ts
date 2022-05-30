@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Order } from '../_models/order';
 
@@ -16,6 +17,10 @@ export class OrdersService {
   }
   getOrder(id: string){
     return this.http.get<Order>(this.baseUrl + 'orders/' + id);
+  }
+
+  countOrders(){
+    return this.http.get<Subscription>(this.baseUrl + 'orders/count');
   }
   updateOrder(id: Number, order: Order){
     return this.http.put(this.baseUrl + 'orders/'+ id, order)
