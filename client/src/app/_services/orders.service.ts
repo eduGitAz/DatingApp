@@ -20,7 +20,22 @@ export class OrdersService {
   }
 
   countOrders(){
-    return this.http.get<Subscription>(this.baseUrl + 'orders/count');
+    return this.http.get<number>(this.baseUrl + 'orders/count');
+  }
+  countNewOrders(){
+    return this.http.get<number>(this.baseUrl + 'orders/newOrder');
+  }
+  countRealizedOrders(){
+    return this.http.get<number>(this.baseUrl + 'orders/realizedOrder');
+  }
+  countClosedOrders(){
+    return this.http.get<number>(this.baseUrl + 'orders/closedOrder');
+  }
+  countPercentOfServicesOrders(){
+    return this.http.get<number>(this.baseUrl + 'orders/percentofservices');
+  }
+  countPercentOfInstallationOrders(){
+    return this.http.get<number>(this.baseUrl + 'orders/percentofinstallation');
   }
   updateOrder(id: Number, order: Order){
     return this.http.put(this.baseUrl + 'orders/'+ id, order)

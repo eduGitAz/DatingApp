@@ -10,7 +10,7 @@ import { Customer } from '../_models/customer';
 export class CustomersService {
   baseUrl = environment.apiUrl;
   customer: Customer;
-
+  serviceCount: number;
   constructor(private http: HttpClient) { }
 
   getCustomers(){
@@ -21,9 +21,8 @@ export class CustomersService {
   }
 
   countCustomers(){
-    return this.http.get<Subscription>(this.baseUrl + 'customers/count');
+    return this.http.get<number>(this.baseUrl + 'customers/count');
   }
-
   updateCustomer(id: Number, customer: Customer){
     return this.http.put(this.baseUrl + 'customers/'+ id, customer)
   }

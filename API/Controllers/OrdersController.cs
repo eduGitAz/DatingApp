@@ -35,20 +35,80 @@ namespace API.Controllers
 
            
         [HttpGet("count")]
-        public async Task<ActionResult<IEnumerable<OrderDto>>> CountOrders()
+        public async Task<int> CountOrders()
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
             
             int id = currentUser.AppCompany.Id;
-            var orders = await _orderRepository.GetOrdersDtoAsync(id);
-             int i = 0;
-            foreach (var item in orders)
-            {
-                i++;
-            }
-            return Ok(i);
+            var result = await _orderRepository.CountAllOrdersDtoAsync(id);
+            return result;
+          
         } 
+        [HttpGet("newOrder")]
+        public async Task<int> CountNewOrders()
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            
+            int id = currentUser.AppCompany.Id;
+            var result = await _orderRepository.CountNewOrdersDtoAsync(id);
+           
+            return result;
+        } 
+        [HttpGet("realizedOrder")]
+        public async Task<int> CountRealizedOrders()
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            
+            int id = currentUser.AppCompany.Id;
+            var result = await _orderRepository.CountRealizedOrdersDtoAsync(id);
+          
+           return result;
+        } 
+
+        [HttpGet("closedOrder")]
+        public async Task<int> CountClosedOrders()
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            
+            int id = currentUser.AppCompany.Id;
+            var result = await _orderRepository.CountClosedOrdersDtoAsync(id);
+            return result;
+        
+        } 
+
+        [HttpGet("percentOfServices")]
+        public async Task<int> CountPercentOfServicesOrders()
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            
+            int id = currentUser.AppCompany.Id;
+            var service = await _orderRepository.CountPercentOfServicesOrders(id);
+            var all = await _orderRepository.CountAllOrdersDtoAsync(id);
+
+            var result = (service*100) / all;
+            return result;
+      
+        } 
+        [HttpGet("percentOfInstallation")]
+        public async Task<int> CountPercentOfInstallationOrders()
+        {
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            
+            int id = currentUser.AppCompany.Id;
+            var installation = await _orderRepository.CountPercentOfInstallationOrders(id);
+            var all = await _orderRepository.CountAllOrdersDtoAsync(id);
+
+            var result = ( installation * 100) / all;
+            return result;
+      
+        } 
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderDto>> GetOrder(int id)

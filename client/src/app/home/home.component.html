@@ -27,7 +27,9 @@
         </div>
     </div>
     </div>
+
     <div class="col-8">
+        <div class="row">
         <div id="customers">
         <div class="card">
             <div class="card-body">
@@ -35,7 +37,7 @@
                     <img [src]="'assets/img/customers.png'" [alt]='countCustomer' />
                 </div>
                 <div class="sumText">
-                <p><b>Liczba Klientów:</b><br>{{amountCustomer}}</p>
+                <p><b>Liczba Klientów:</b><br>{{amountCustomers}}</p>
                 </div>
             </div>
         </div>
@@ -68,6 +70,83 @@
             </div>
         </div>
         </div>
+    </div>
+
+        <div class="row">
+        <div id="percentServices">
+            <div class="card">
+                
+                <div class="card-body">
+                    <div class="sumImage">
+                        <img [src]="'assets/img/serwis.png'" [alt]="countOrders" />
+                    </div>
+                    <div class="sumText">
+                    <p><b>Serwisy</b><br>{{percentOfServicesOrders}}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="percentInstallation">
+            <div class="card">
+                
+                <div class="card-body">
+                    <div class="sumImage">
+                        <img [src]="'assets/img/installation.png'" [alt]="countOrders" />
+                    </div>
+                    <div class="sumText">
+                    <p><b>Montaże</b><br>{{percentOfInstallationOrders}}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="newOrder">
+            <div class="card">
+                
+                <div class="card-body">
+                    <div class="sumImage">
+                        <img [src]="'assets/img/new.png'" [alt]="countOrders" />
+                    </div>
+                    <div class="sumText">
+                    <p><b>Nowe zamówienia:</b><br>{{amountNewOrderes}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="realizedOrder">
+            <div class="card">
+                
+                <div class="card-body">
+                    <div class="sumImage">
+                        <img [src]="'assets/img/realized.png'" [alt]="countOrders" />
+                    </div>
+                    <div class="sumText">
+                    <p><b>Realizowane zamówienia:</b><br>{{amountRealizedOrders}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="closedOrder">
+            <div class="card">
+                
+                <div class="card-body">
+                    <div class="sumImage">
+                        <img [src]="'assets/img/closed.png'" [alt]="countOrders" />
+                    </div>
+                    <div class="sumText">
+                    <p><b>Zamknięte zamówienia</b><br>{{amountClosedOrders}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
+    </div>
+    
+
 </div>

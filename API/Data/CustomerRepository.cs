@@ -36,6 +36,7 @@ namespace API.Data
                 .ProjectTo<CustomerDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
+
         public async Task<AppCustomer> GetCustomerByIdAsync(int id)
         {
              return await _context.Customers 

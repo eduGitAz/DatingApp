@@ -35,6 +35,41 @@ namespace API.Data
                 .ProjectTo<OrderDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
         }
+        public async Task<int> CountAllOrdersDtoAsync(int appCompanyId)
+        {
+            return  _context.Orders
+                .Where(x => x.AppCompany.Id == appCompanyId).Count();
+              
+        }
+        public async Task<int> CountNewOrdersDtoAsync(int appCompanyId)
+        {
+            return  _context.Orders
+                .Where(x => x.AppCompany.Id == appCompanyId && x.AppOrderStatus.Name == "Nowe").Count();
+              
+        }
+        public async Task<int> CountRealizedOrdersDtoAsync(int appCompanyId)
+        {
+            return  _context.Orders
+                .Where(x => x.AppCompany.Id == appCompanyId && x.AppOrderStatus.Name == "Realizowane").Count();
+              
+        }
+        public async Task<int> CountClosedOrdersDtoAsync(int appCompanyId)
+        {
+            return  _context.Orders
+                .Where(x => x.AppCompany.Id == appCompanyId && x.AppOrderStatus.Name == "Zamknięte").Count();
+ 
+        }
+
+        public async Task<int> CountPercentOfServicesOrders(int appCompanyId)
+        {
+            return  _context.Orders
+                .Where(x => x.AppCompany.Id == appCompanyId && x.AppOrderType.Name == "Serwis").Count();
+        }
+        public async Task<int> CountPercentOfInstallationOrders(int appCompanyId)
+        {
+            return  _context.Orders
+                .Where(x => x.AppCompany.Id == appCompanyId && x.AppOrderType.Name == "Montaż").Count();
+        }
 
         public async Task<AppOrder> GetOrderByIdAsync(int id)
         {

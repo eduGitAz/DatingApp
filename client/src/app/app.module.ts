@@ -42,6 +42,7 @@ import { DeviceListComponent } from './devices/device-list/device-list.component
 import { DeviceEditComponent } from './devices/device-edit/device-edit.component';
 import { DeviceDetailComponent } from './devices/device-detail/device-detail.component';
 import { ComparisionComponent } from './comparision/comparision.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 
@@ -88,6 +89,7 @@ import { ComparisionComponent } from './comparision/comparision.component';
     FormsModule,
     SharedModule,
     Ng2SearchPipeModule,
+    NgChartsModule,
     
 
   ],

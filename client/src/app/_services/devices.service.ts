@@ -19,7 +19,7 @@ export class DevicesService {
     return this.http.get<Device>(this.baseUrl + 'devices/' + id);
   }
   countDevices(){
-    return this.http.get<Subscription>(this.baseUrl + 'devices/count');
+    return this.http.get<number>(this.baseUrl + 'devices/count');
   }
 
   updateDevice(id: Number, device: Device){

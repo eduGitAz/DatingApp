@@ -10,11 +10,37 @@
 
 #devices{
     float:left;
+    width:30%;
 }
 #customers{
     float:left;
+    width:30%;
 }
 
 #orders{
     float:left;
+    width:30%;
+}
+#percentServices{
+    clear:both;
+    width:45%;
+}
+
+#percentInstallation{
+    float:left;
+    width:45%;
+}
+
+#newOrder{
+    float:left;
+    width:30%;
+}
+#realizedOrder{
+    float:left;
+    width:30%;
+}
+
+#closedOrder{
+    float:left;
+    width:30%;
 }

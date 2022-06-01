@@ -27,6 +27,8 @@ namespace API.Data
                 .ProjectTo<CompanyDto>(_mapper.ConfigurationProvider)
                 .SingleOrDefaultAsync();
         }
+
+        
        public async Task<CompanyDto> GetCompanyDtoByNameAsync(string name)
         {
             return await _context.Companies
