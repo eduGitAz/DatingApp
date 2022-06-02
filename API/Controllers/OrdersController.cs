@@ -5,6 +5,7 @@ using API.DTOs;
 using API.Entities;
 using API.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -21,6 +22,8 @@ namespace API.Controllers
             _orderRepository = orderRepository;
             _userRepository = userRepository;
         }
+        
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrders()
         {
@@ -33,7 +36,7 @@ namespace API.Controllers
             return Ok(orders);
         } 
 
-           
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("count")]
         public async Task<int> CountOrders()
         {
@@ -45,6 +48,8 @@ namespace API.Controllers
             return result;
           
         } 
+
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("newOrder")]
         public async Task<int> CountNewOrders()
         {
@@ -56,6 +61,8 @@ namespace API.Controllers
            
             return result;
         } 
+
+         [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("realizedOrder")]
         public async Task<int> CountRealizedOrders()
         {
@@ -68,6 +75,7 @@ namespace API.Controllers
            return result;
         } 
 
+         [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("closedOrder")]
         public async Task<int> CountClosedOrders()
         {
@@ -80,6 +88,7 @@ namespace API.Controllers
         
         } 
 
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("percentOfServices")]
         public async Task<int> CountPercentOfServicesOrders()
         {
@@ -94,6 +103,8 @@ namespace API.Controllers
             return result;
       
         } 
+
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("percentOfInstallation")]
         public async Task<int> CountPercentOfInstallationOrders()
         {
@@ -109,7 +120,7 @@ namespace API.Controllers
       
         } 
 
-
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderDto>> GetOrder(int id)
         {
@@ -117,6 +128,7 @@ namespace API.Controllers
 
         } 
 
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpPost("add")] 
          public async Task<ActionResult> AddOrder(OrderDto orderDto)
         {
@@ -142,7 +154,9 @@ namespace API.Controllers
            
             return Ok(); 
         }
+        
 
+         [Authorize(Policy = "RequireInstallerRole")]
          [HttpPut("{id}")] 
          public async Task<ActionResult> UpdateOrder(int id, OrderUpdateDto orderUpdateDto)  
         {
@@ -156,6 +170,7 @@ namespace API.Controllers
             return BadRequest("Dane nie zostały zaktualizowane");
         }
 
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpDelete("delete/{id}")]
         public async Task<ActionResult<OrderDto>> DeleteOrder(int id)
         {

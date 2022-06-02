@@ -4,10 +4,6 @@ import { UserManagementComponent } from './users/user-management/user-management
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
-import { MemberDetailComponent } from './members/member-detail/member-detail.component';
-import { MemberListComponent } from './members/member-list/member-list.component';
-import { NotloggedinComponent } from './notloggedin/notloggedin.component';
-import { RegisterComponent } from './register/register.component';
 import { AdminGuard } from './_guards/admin.guard';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserDetailComponent } from './users/user-detail/user-detail.component';
@@ -32,7 +28,6 @@ import { ComparisionComponent } from './comparision/comparision.component';
 
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
   {
     path: '',
     runGuardsAndResolvers: 'always',
@@ -43,10 +38,6 @@ const routes: Routes = [
       {path: 'users/:id', component: UserDetailComponent},
       {path: 'user/edit/:id', component: UserEditComponent},
       {path: 'user/add', component: UserAddComponent},
-     
-
-      {path: 'members', component: MemberListComponent},
-      {path: 'members/:id', component: MemberDetailComponent}, 
 
       {path: 'customers', component: CustomerListComponent},
       {path: 'customers/:id', component: CustomerDetailComponent},

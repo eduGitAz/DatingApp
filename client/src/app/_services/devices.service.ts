@@ -21,7 +21,6 @@ export class DevicesService {
   countDevices(){
     return this.http.get<number>(this.baseUrl + 'devices/count');
   }
-
   updateDevice(id: Number, device: Device){
     return this.http.put(this.baseUrl + 'devices/'+ id, device)
   }

@@ -13,7 +13,7 @@ export class ManagerGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
       map(user => {
-        if (user.roles.includes('Manager')) {
+        if (user.roles.includes('Admin') || user.roles.includes('Manager')) {
           return true;
         }
         this.toastr.error('You cannot enter this area');

@@ -5,6 +5,7 @@ using API.DTOs;
 using API.Entities;
 using API.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -21,7 +22,8 @@ namespace API.Controllers
             _deviceRepository = deviceRepository;
             _userRepository = userRepository;
         }
-
+        
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DeviceDto>>> GetDevices()
         {
@@ -33,7 +35,8 @@ namespace API.Controllers
 
             return Ok(devices);
         } 
-
+        
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("count")]
         public async Task<ActionResult<IEnumerable<DeviceDto>>> CountDevices()
         {
@@ -50,7 +53,7 @@ namespace API.Controllers
 
             return Ok(i);
         } 
-   
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpGet("{id}")]
         public async Task<ActionResult<DeviceDto>> GetDevice(int id)
         {
@@ -58,6 +61,7 @@ namespace API.Controllers
 
         } 
 
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpPost("add")] 
          public async Task<ActionResult> AddDevice(DeviceDto deviceDto)
         {
@@ -77,6 +81,7 @@ namespace API.Controllers
             return Ok(); 
         }
 
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpPut("{id}")] 
          public async Task<ActionResult> UpdateDevice(int id, DeviceUpdateDto deviceUpdateDto)  
         {
@@ -89,7 +94,7 @@ namespace API.Controllers
             if (await _deviceRepository.SaveAllAsync()) return NoContent();
             return BadRequest("Dane nie zostały zaktualizowane");
         }
-
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpDelete("delete/{id}")]
         public async Task<ActionResult<CustomerDto>> DeleteDevice(int id)
         {

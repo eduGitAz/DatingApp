@@ -44,7 +44,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 this.router.navigateByUrl('/server-error', navigationExtras);
                 break;
               default:
-                this.toastr.error('Something unexpected went wrong');
+                this.toastr.error('Nie masz uprawnień do wykonania tej operacji');
                 console.log(error);
                 break;
           }

@@ -27,7 +27,7 @@ namespace API.Controllers
             _mapper = mapper;
         }
 
-        [Authorize(Policy = "RequireManagerRole")]
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers() 
         {
@@ -39,7 +39,7 @@ namespace API.Controllers
             return Ok(users);
         }
 
-        [Authorize(Policy = "RequireManagerRole")]
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpGet("{id}")]
         public async Task<ActionResult<MemberDto>> GetUser(int id)
         {

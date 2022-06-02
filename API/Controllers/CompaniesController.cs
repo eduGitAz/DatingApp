@@ -24,7 +24,7 @@ namespace API.Controllers
         }
         
      
-
+       [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet]
         public async Task<ActionResult<CompanyDto>> GetCompany()
         {
@@ -35,6 +35,7 @@ namespace API.Controllers
 
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpPut("{id}")]
          public async Task<ActionResult> UpdateCompany(int id, CompanyUpdateDto companyUpdateDto)  
         {

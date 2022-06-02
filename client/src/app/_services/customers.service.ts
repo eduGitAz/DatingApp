@@ -19,7 +19,6 @@ export class CustomersService {
   getCustomer(id: string){
     return this.http.get<Customer>(this.baseUrl + 'customers/' + id);
   }
-
   countCustomers(){
     return this.http.get<number>(this.baseUrl + 'customers/count');
   }

@@ -13,7 +13,7 @@ export class InstallerGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.accountService.currentUser$.pipe(
       map(user => {
-        if (user.roles.includes('Installer')) {
+        if (user.roles.includes('Admin') || user.roles.includes('Manager')||user.roles.includes('Installer')) {
           return true;
         }
         this.toastr.error('You cannot enter this area');

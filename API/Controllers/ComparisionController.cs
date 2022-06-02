@@ -4,6 +4,7 @@ using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -18,7 +19,7 @@ namespace API.Controllers
             _comparasionRepository = comparasionRepository;
             _userRepository = userRepository;
         }
-
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppComparision>>> GetComparision()
         {

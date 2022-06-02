@@ -26,7 +26,7 @@ namespace API.Controllers
             _customerRepository = customerRepository;
             _userRepository = userRepository;
         }
-
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CustomerDto>>> GetCustomers()
         {
@@ -38,9 +38,10 @@ namespace API.Controllers
 
             return Ok(customers);
         } 
-        
+
+
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("count")]
-        
         public async Task<ActionResult<IEnumerable<int>>> CountCustomers()
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
@@ -56,14 +57,16 @@ namespace API.Controllers
 
             return Ok(i);
         } 
-   
+
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpGet("{id}")]
         public async Task<ActionResult<CustomerDto>> GetCustomer(int id)
         {
             return await _customerRepository.GetCustomerDtoByIdAsync(id);
 
         } 
-
+        
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpPost("add")] 
          public async Task<ActionResult> AddCustomer(CustomerDto customerDto)
         {
@@ -87,7 +90,7 @@ namespace API.Controllers
            
             return Ok(); 
         }
-         
+         [Authorize(Policy = "RequireManagerRole")]
          [HttpPut("{id}")] 
          public async Task<ActionResult> UpdateCustomer(int id, CustomerUpdateDto customerUpdateDto)  
         {
@@ -100,7 +103,7 @@ namespace API.Controllers
             if (await _customerRepository.SaveAllAsync()) return NoContent();
             return BadRequest("Dane nie zostały zaktualizowane");
         }
-       
+        [Authorize(Policy = "RequireManagerRole")]
         [HttpDelete("delete/{id}")]
         public async Task<ActionResult<CustomerDto>> DeleteCustomer(int id)
         {

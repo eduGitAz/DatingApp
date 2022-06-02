@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using API.DTOs;
 using API.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -17,7 +18,8 @@ namespace API.Controllers
             _mapper = mapper;
             _useOfRefrigernatRepository = useOfRefrigernatRepository;
         }
-
+        
+        [Authorize(Policy = "RequireInstallerRole")]
         public async Task<ActionResult<IEnumerable<UseOfRefrigernatDto>>> GetUseOfRefrigernatDtoAsync()
         {
         

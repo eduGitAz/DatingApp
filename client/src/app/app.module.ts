@@ -7,8 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './register/register.component';
-import { MemberListComponent } from './members/member-list/member-list.component';
-import { MemberDetailComponent } from './members/member-detail/member-detail.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SharedModule } from './_modules/shared.module';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
@@ -16,7 +14,6 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
-import { NotloggedinComponent } from './notloggedin/notloggedin.component';
 import { HeaderComponent } from './header/header.component';
 import { LeftmenuComponent } from './leftmenu/leftmenu.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
@@ -50,12 +47,9 @@ import { NgChartsModule } from 'ng2-charts';
   declarations: [
     AppComponent,
     RegisterComponent,
-    MemberListComponent,
-    MemberDetailComponent,
     TestErrorsComponent,
     NotFoundComponent,
     ServerErrorComponent,
-    NotloggedinComponent,
     HeaderComponent,
     LeftmenuComponent,
     HasRoleDirective,

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using API.DTOs;
 using API.Interfaces;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -19,6 +20,7 @@ namespace API.Controllers
            
         }
 
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<OrderTypeDto>>> GetOrderTypeDto()
         {
