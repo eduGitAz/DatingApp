@@ -18,13 +18,15 @@ namespace API.Data
             _context = context;
         }
 
-        public async Task<IEnumerable<AppComparision>> GetComparision()
+        public async Task<IEnumerable<AppComparision>> GetComparision(int id)
         {
             
             AppComparision appComparision;
             List<AppComparision> en = new List<AppComparision>();
 
-             var a =  _context.Orders.GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
+             var a =  _context.Orders
+            .Where(x => x.AppCompany.Id == id)
+             .GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
              .Select(y => new {
                  y.Key, Suma = y.Sum(x => x.Weight)
              } ).Where(d => d.Key.NameUse == "Serwisowanie lub klimatyzacja stacjonarnych urządzeń klimatyzacyjnych " && d.Key.Name=="R134a").FirstOrDefault();
@@ -40,7 +42,9 @@ namespace API.Data
              
 
     
-             var b =  _context.Orders.GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
+             var b =  _context.Orders
+             .Where(x => x.AppCompany.Id == id)
+             .GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
              .Select(y => new {
                  y.Key, Suma = y.Sum(x => x.Weight)
              } ).Where(d => d.Key.NameUse == "Serwisowanie lub konserwacja ruchomych urządzeń klimatyzacyjnych " && d.Key.Name=="R134a").FirstOrDefault();
@@ -56,7 +60,9 @@ namespace API.Data
 
 
 
-            var c =  _context.Orders.GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
+            var c =  _context.Orders
+            .Where(x => x.AppCompany.Id == id)
+            .GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
              .Select(y => new {
                  y.Key, Suma = y.Sum(x => x.Weight)
              } ).Where(d => d.Key.NameUse == "Serwisowanie lub klimatyzacja stacjonarnych urządzeń klimatyzacyjnych " && d.Key.Name=="R410a").FirstOrDefault();
@@ -72,7 +78,9 @@ namespace API.Data
 
 
             
-            var d =  _context.Orders.GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
+            var d =  _context.Orders
+            .Where(x => x.AppCompany.Id == id)
+            .GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
              .Select(y => new {
                  y.Key, Suma = y.Sum(x => x.Weight)
              } ).Where(d => d.Key.NameUse == "Serwisowanie lub konserwacja ruchomych urządzeń klimatyzacyjnych" && d.Key.Name=="R410a").FirstOrDefault();
@@ -87,7 +95,9 @@ namespace API.Data
 
 
                  
-            var e =  _context.Orders.GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
+            var e =  _context.Orders
+            .Where(x => x.AppCompany.Id == id)
+            .GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
              .Select(y => new {
                  y.Key, Suma = y.Sum(x => x.Weight)
              } ).Where(d => d.Key.NameUse == "Serwisowanie lub klimatyzacja stacjonarnych urządzeń klimatyzacyjnych " && d.Key.Name=="R32").FirstOrDefault();
@@ -101,7 +111,9 @@ namespace API.Data
 
 
                  
-            var f =  _context.Orders.GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
+            var f =  _context.Orders
+            .Where(x => x.AppCompany.Id == id)
+            .GroupBy(d =>  new{d.AppRefrigerant.Name, d.AppUseOfRefrigernat.NameUse}  )
              .Select(y => new {
                  y.Key, Suma = y.Sum(x => x.Weight)
              } ).Where(d => d.Key.NameUse == "Serwisowanie lub konserwacja ruchomych urządzeń klimatyzacyjnych " && d.Key.Name=="R32").FirstOrDefault();

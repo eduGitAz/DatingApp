@@ -5,6 +5,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using API.Entities;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace API.Controllers
 {
@@ -23,8 +24,11 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppComparision>>> GetComparision()
         {
-
-            var comparisions = await _comparasionRepository.GetComparision();
+            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
+            
+            int id = currentUser.AppCompany.Id;
+            var comparisions = await _comparasionRepository.GetComparision(id);
             return Ok(comparisions);
        
         } 

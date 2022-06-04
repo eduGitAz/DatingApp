@@ -90,7 +90,7 @@ namespace API.Controllers
 
         [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("percentOfServices")]
-        public async Task<int> CountPercentOfServicesOrders()
+        public async Task<decimal> CountPercentOfServicesOrders()
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
@@ -98,15 +98,17 @@ namespace API.Controllers
             int id = currentUser.AppCompany.Id;
             var service = await _orderRepository.CountPercentOfServicesOrders(id);
             var all = await _orderRepository.CountAllOrdersDtoAsync(id);
-
-            var result = (service*100) / all;
+            
+            decimal result ;
+            try{ result = (service*100) / all;}
+            catch {{result = 0;}}
             return result;
       
         } 
 
         [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("percentOfInstallation")]
-        public async Task<int> CountPercentOfInstallationOrders()
+        public async Task<decimal> CountPercentOfInstallationOrders()
         {
             var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
             var currentUser = await _userRepository.GetUserByIdAsync(currentUserId);
@@ -114,8 +116,11 @@ namespace API.Controllers
             int id = currentUser.AppCompany.Id;
             var installation = await _orderRepository.CountPercentOfInstallationOrders(id);
             var all = await _orderRepository.CountAllOrdersDtoAsync(id);
-
-            var result = ( installation * 100) / all;
+            
+            decimal result ;
+            try{ result = ( installation * 100) / all;}
+            catch {result = 0;}
+            
             return result;
       
         } 

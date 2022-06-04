@@ -6,6 +6,6 @@ namespace API.Interfaces
 {
     public interface IComparisionRepository
     {
-         Task<IEnumerable<AppComparision>> GetComparision();
+         Task<IEnumerable<AppComparision>> GetComparision(int id);
     }
 }

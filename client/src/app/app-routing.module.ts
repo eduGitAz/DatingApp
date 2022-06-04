@@ -28,10 +28,12 @@ import { ComparisionComponent } from './comparision/comparision.component';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    runGuardsAndResolvers: 'always',
-    canActivate: [AuthGuard],
+  
+    {path: '', component: HomeComponent},
+    {
+      path: '',
+      runGuardsAndResolvers: 'always',
+      canActivate: [AuthGuard],
     children: [
       {path: '', component: HomeComponent},
       {path: 'users/users-roles', component: UserManagementComponent, canActivate: [AdminGuard]},

@@ -40,6 +40,7 @@ import { DeviceEditComponent } from './devices/device-edit/device-edit.component
 import { DeviceDetailComponent } from './devices/device-detail/device-detail.component';
 import { ComparisionComponent } from './comparision/comparision.component';
 import { NgChartsModule } from 'ng2-charts';
+import { NotloggedinComponent } from './notloggedin/notloggedin.component';
 
 
 
@@ -73,7 +74,8 @@ import { NgChartsModule } from 'ng2-charts';
     DeviceListComponent,
     DeviceEditComponent,
     DeviceDetailComponent,
-    ComparisionComponent
+    ComparisionComponent,
+    NotloggedinComponent
   ],
   imports: [
     BrowserModule,
