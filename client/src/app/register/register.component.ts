@@ -20,9 +20,11 @@ export class RegisterComponent implements OnInit {
       console.log(response);
       this.toastr.success("Rejestracja powiodła się"); 
       this.cancel();
-    }, error => {
-      console.log(error);
-      this.toastr.error("Błąd w rejestracji - sprawdź poprawność danych"); 
+    }, errors => {
+      console.log(errors);
+      errors.forEach(element => {
+        this.toastr.error(element); 
+      });
     });
   }
 

@@ -72,10 +72,10 @@ namespace API.Controllers
         {
             var user = await _userManager.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());
             
-            if (user == null) return Unauthorized("Invalid username");
+            if (user == null) return Unauthorized("Nieprawidłowy login lub hasło");
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
-            if (!result.Succeeded) return Unauthorized();
+            if (!result.Succeeded) return Unauthorized("Nieprawidłowy login lub hasło");
 
             return new UserDto
             {

@@ -1,8 +1,7 @@
 using System;
 
 namespace API.DTOs
-{
-    public class OrderUpdateDto
+{    public class OrderUpdateDto
     {
         public int CustomerId { get; set; }
         public int DeviceId {get; set;}

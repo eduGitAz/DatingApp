@@ -43,7 +43,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<MemberDto>> GetUser(int id)
         {
-            return await _userRepository.GetMemberDtoByIdAsync(id);
+            return await _userRepository.GetMemberDtoByIdAsync(id); 
 
         } 
 
@@ -152,6 +152,7 @@ namespace API.Controllers
     }
     
          
-    
+
+
 }
 

@@ -75,7 +75,7 @@ namespace API.Controllers
            return result;
         } 
 
-         [Authorize(Policy = "RequireInstallerRole")]
+        [Authorize(Policy = "RequireInstallerRole")]
         [HttpGet("closedOrder")]
         public async Task<int> CountClosedOrders()
         {
@@ -172,13 +172,17 @@ namespace API.Controllers
             
 
             if (await _orderRepository.SaveAllAsync()) return NoContent();
-            return BadRequest("Dane nie zostały zaktualizowane");
+            return BadRequest("Data has not been updated");
         }
 
         [Authorize(Policy = "RequireManagerRole")]
         [HttpDelete("delete/{id}")]
         public async Task<ActionResult<OrderDto>> DeleteOrder(int id)
         {
+            var order = await _orderRepository.GetOrderByIdAsync(id);
+
+            if(order.UseOfRefrigernatId != null || order.RefrigerantId != null || order.Weight != null)
+                return BadRequest("Zamówienie nie może zostać usunięte");
             await _orderRepository.Delete(id);
             return NoContent();
         }

@@ -24,9 +24,14 @@ export class OrderDetailComponent implements OnInit {
 
   deleteOrder(){ 
     if(confirm('Czy na pewno chcesz usunąc zamówienie nr: "'+ this.order.id + '"?')){
+    
     this.orderService.deleteOrder(this.order.id).subscribe(() => {
       this.toastr.success('Zamówienie zostało usunięte');
-    })}
+    }, error => {
+      console.log(error);
+      this.toastr.error(error.error); 
+    })
+  }
   }
  
 }

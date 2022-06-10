@@ -22,9 +22,7 @@ namespace API.Controllers
         [Authorize(Policy = "RequireInstallerRole")]
         public async Task<ActionResult<IEnumerable<UseOfRefrigernatDto>>> GetUseOfRefrigernatDtoAsync()
         {
-        
             var useOfRefrigernatDtoAsync = await _useOfRefrigernatRepository.GetUseOfRefrigernatDtoAsync();
-
             return Ok(useOfRefrigernatDtoAsync);
         } 
     }
